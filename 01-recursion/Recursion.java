@@ -2,7 +2,8 @@ public class Recursion{
   public static void main(String[] args) {
     //printAllWords(3);
     char[] lets = {'a','b','c'};
-    printNoDoubleLetterWords(3,lets);
+    //printNoDoubleLetterWords(3,lets);
+    System.out.println(reverse("ewew"));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -52,4 +53,15 @@ public class Recursion{
       }
     }
   }
+  /*
+  *@param s any string
+  *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
+  */
+  public static String reverse(String s){
+    if(s.length() == 0)return s;
+    else{
+      return reverse(s.substring(1)) + s.charAt(0) ;
+    }
+  }
+
 }
