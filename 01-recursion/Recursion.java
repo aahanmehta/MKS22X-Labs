@@ -3,7 +3,7 @@ public class Recursion{
     //printAllWords(3);
     char[] lets = {'a','b','c'};
     //printNoDoubleLetterWords(3,lets);
-    System.out.println(reverse("ewew"));
+    System.out.println(countNoDoubleLetterWords(2, ""));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -63,5 +63,13 @@ public class Recursion{
       return reverse(s.substring(1)) + s.charAt(0) ;
     }
   }
-
+  /*
+  *@param length how long the words must be
+  *param word the variable to store the partial solution (should start at "")
+  *@return the number of words that have no adjacent matching letters using the letters a-z.
+  *Repetition allowed except when letters are adjacent.
+  */
+  public static long countNoDoubleLetterWords(int length,String word){
+    //Hint: not a wrapper method, but you must call it starting with "" as your word.
+    if(word.length() == )
 }
