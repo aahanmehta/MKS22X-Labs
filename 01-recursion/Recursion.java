@@ -3,7 +3,7 @@ public class Recursion{
     //printAllWords(3);
     char[] lets = {'a','b','c'};
     //printNoDoubleLetterWords(3,lets);
-    System.out.println(countNoDoubleLetterWords(2, ""));
+    System.out.println(countNoDoubleLetterWords(3, ""));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -71,5 +71,15 @@ public class Recursion{
   */
   public static long countNoDoubleLetterWords(int length,String word){
     //Hint: not a wrapper method, but you must call it starting with "" as your word.
-    if(word.length() == )
+    long count = 0;
+    if(length == 0)count +=1;
+    else{
+      for(char c = 'a'; c <= 'z' ; c++){
+        if( word.length() == 0 || c != word.charAt(word.length()-1) ){
+          count += countNoDoubleLetterWords(length-1,word + c);
+        }
+      }
+    }
+    return count;
+  }
 }
