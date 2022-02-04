@@ -4,7 +4,8 @@ public class Recursion{
     char[] lets = {'a','b','c'};
     //printNoDoubleLetterWords(3,lets);
     //System.out.println(countNoDoubleLetterWords(3, ""));
-    System.out.println(sqrt(2));
+    //System.out.println(sqrt(2));
+    System.out.println(fibIter(3,1,0));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -105,5 +106,17 @@ public class Recursion{
       }
     }
     return count;
+  }
+
+  /*
+  *@param n any non-negative value
+  *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+  */
+  public static int fibIter(int n, int f1, int f2){
+    //DO NOT call fibIter more than once
+    if(n == 0)return f2;
+    else{
+      return fibIter(n-1, f1 +f2, f1);
+    }
   }
 }
