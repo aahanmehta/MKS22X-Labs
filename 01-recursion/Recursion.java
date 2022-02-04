@@ -3,7 +3,8 @@ public class Recursion{
     //printAllWords(3);
     char[] lets = {'a','b','c'};
     //printNoDoubleLetterWords(3,lets);
-    System.out.println(countNoDoubleLetterWords(3, ""));
+    //System.out.println(countNoDoubleLetterWords(3, ""));
+    System.out.println(sqrt(2));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -63,6 +64,29 @@ public class Recursion{
       return reverse(s.substring(1)) + s.charAt(0) ;
     }
   }
+
+  /*
+  *@param n any non-negative value you want to take the sqrt of
+  *@return the approximate sqrt of n within a tolerance of 0.001%
+  */
+  public static double sqrt(double n){
+    //Hint: This is a wrapper method.
+    return sqrt(n, 1);
+  }
+  /*
+  *@param n any non-negative value you want to take the sqrt of
+  *@param guess starting guess of sqrt of param n
+  *@return the approximate sqrt of n within a tolerance of 0.001%
+  */
+  public static double sqrt(double n, double guess){
+    if(n == 0) return 0;
+    if(Math.abs(guess*guess - n) <= 0.00001)return guess;
+    else{
+      return sqrt(n, (n/guess + guess)/2 );
+    }
+
+  }
+
   /*
   *@param length how long the words must be
   *param word the variable to store the partial solution (should start at "")
