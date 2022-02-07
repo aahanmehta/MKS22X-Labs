@@ -4,8 +4,9 @@ public class Recursion{
     char[] lets = {'a','b','c'};
     //printNoDoubleLetterWords(3,lets);
     //System.out.println(countNoDoubleLetterWords(3, ""));
-    //System.out.println(sqrt(2));
-    System.out.println(fibIter(3,1,0));
+    // System.out.println(sqrt());
+    //System.out.println(fibIter(3,1,0));
+    // System.out.println(reverse("abcd"));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -118,5 +119,14 @@ public class Recursion{
     else{
       return fibIter(n-1, f1 +f2, f1);
     }
+  }
+
+  public static boolean partalSums(int[] ary, int target){
+    return partialSums(ary, target, 0,1);
+  }
+  public static boolean partialSums(int ary[], int target, int i, int i1){
+    if(target == 0)return true;
+    if(i == ary.length())return false;
+    if(i1 == ary.length)return partialSums(ary, target,i+1, 1)
   }
 }
