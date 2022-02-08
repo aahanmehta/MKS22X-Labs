@@ -7,6 +7,8 @@ public class Recursion{
     // System.out.println(sqrt());
     //System.out.println(fibIter(3,1,0));
     // System.out.println(reverse("abcd"));
+    int[] a = {2,4,8};
+    System.out.println(partalSums(a, 9));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -122,11 +124,20 @@ public class Recursion{
   }
 
   public static boolean partalSums(int[] ary, int target){
-    return partialSums(ary, target, 0,1);
+    return partialSums(ary, target, 0);
   }
-  public static boolean partialSums(int ary[], int target, int i, int i1){
+
+  public static boolean partialSums(int[] ary, int target, int i){
     if(target == 0)return true;
-    if(i == ary.length())return false;
-    if(i1 == ary.length)return partialSums(ary, target,i+1, 1)
+    if(i >= ary.length)return false;
+    else{
+      return(partialSums(ary, target - ary[i], i+1) || partialSums(ary, target, i+1));
+    }
   }
+
+  public static boolean splitArray(int[] arr){
+
+  }
+
+  public static boolean splitArray(int[] arr, 
 }
