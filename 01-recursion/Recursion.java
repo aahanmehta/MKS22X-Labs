@@ -7,8 +7,8 @@ public class Recursion{
     // System.out.println(sqrt());
     //System.out.println(fibIter(3,1,0));
     // System.out.println(reverse("abcd"));
-    int[] a = {2,4,8};
-    System.out.println(partalSums(a, 9));
+   // int[] a = {2,4,8};
+   // System.out.println(partalSums(a, 9));
   }
 
   /*Print all words that are made of the letters a-e inclusive.
@@ -135,9 +135,9 @@ public class Recursion{
     }
   }
 
-  public static boolean splitArray(int[] arr){
+//  public static boolean splitArray(int[] arr){
 
-  }
+ // }
 
-  public static boolean splitArray(int[] arr, 
+  //public static boolean splitArray(int[] arr, 
 }
