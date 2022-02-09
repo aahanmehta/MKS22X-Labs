@@ -39,7 +39,7 @@ public class RecursionClasswork{
     //int[] a = {2,4,8};
     //System.out.println(partalSums(a, 9));
 
-    System.out.println(groupSum6(0, new int[]{5, 6, 2}, 8));
+    // System.out.println(groupSum6(0, new int[]{5, 6, 2}, 8));
     System.out.println(groupSum6(0, new int[]{5, 6, 2}, 9));
     System.out.println(groupSum6(0, new int[]{5, 6, 2}, 7));
   }
