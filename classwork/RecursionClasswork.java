@@ -4,8 +4,8 @@ public class RecursionClasswork{
     //System.out.println(partalSums(a, 9));
 
     // System.out.println(groupSum6(0, new int[]{5, 6, 2}, 8));
-    System.out.println(split53(new int[]{1,1}));
-    System.out.println(split53(new int[]{1,1,1}));
+    System.out.println(groupSum5(0, new int[]{0,2,5,10,4}, 19));
+    System.out.println(groupSum5(0, new int[]{0,2,5,10,4}, 12));
   }
 
   public static boolean groupSum(int[] nums, int target){
@@ -60,6 +60,19 @@ public class RecursionClasswork{
       else if (nums[start] % 3 == 0)return split53(nums, start + 1, fiveSum, threeSum + nums[start]);
       else{
         return split53(nums,start+1, fiveSum + nums[start], threeSum) || split53(nums, start + 1, fiveSum, threeSum + nums[start]);
+      }
+    }
+  }
+
+  public static boolean groupSum5(int start, int[] nums, int target){
+    if(start >= nums.length)return target == 0;
+    else{
+      if(nums[start]%5 == 0 && start < nums.length-1 && nums[start+1] == 1){
+        return groupSum5(start +2, nums, target - nums[start]);
+      }
+      else if(nums[start]%5 ==0)return groupSum5(start+1, nums, target - nums[start]);
+      else{
+        return groupSum5(start+1, nums,target) || groupSum5(start+1, nums, target - nums[start]);
       }
     }
   }
