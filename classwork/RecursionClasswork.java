@@ -21,8 +21,8 @@ public class RecursionClasswork{
   }
 
   public static boolean groupSum6(int start, int[] nums, int target){
-    if(target == 0)return true;
-    if(start >= nums.length)return false;
+    if(start >= nums.length && target != 0)return false;
+    if(start >= nums.length && target == 0)return true;
     else{
       if(nums[start] == 6)return groupSum6(start +1, nums, target -6);
       else{
