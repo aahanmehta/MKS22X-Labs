@@ -5,7 +5,7 @@ public class RecursionClasswork{
 
     // System.out.println(groupSum6(0, new int[]{5, 6, 2}, 8));
     System.out.println(groupSumClump(0, new int[]{2,4,8},10));
-    System.out.println(groupSumClump(0, new int[]{0,1,2,4,8,1},14));
+    System.out.println(groupSumClump(0, new int[]{1,2,4,8,1},14));
   }
 
   public static boolean groupSum(int[] nums, int target){
@@ -95,12 +95,12 @@ public class RecursionClasswork{
     if(start >= nums.length)return false;
     else{
       int times = numsAdj(start, nums, nums[start]);
-      return groupSumClump(start + times, nums, target - (times*nums[start]) ) || groupSumClump(start + times, nums, target);
+      return groupSumClump(start + times, nums, target - times*nums[start] ) || groupSumClump(start + times, nums, target);
     }
   }
   public static int numsAdj(int start, int[] nums, int target){
-    int streak = 1;
-    while(start < nums.length && nums[start] == nums[target]){
+    int streak = 0;
+    while(start < nums.length && nums[start] == target){
       streak++;
       start++;
     }
