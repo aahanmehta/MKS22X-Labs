@@ -4,8 +4,8 @@ public class RecursionClasswork{
     //System.out.println(partalSums(a, 9));
 
     // System.out.println(groupSum6(0, new int[]{5, 6, 2}, 8));
-    System.out.println(splitArray(new int[]{2,2}));
-    System.out.println(splitArray(new int[]{2,3}));
+    System.out.println(groupSumClump(0, new int[]{2,4,8},10));
+    System.out.println(groupSumClump(0, new int[]{0,1,2,4,8,1},14));
   }
 
   public static boolean groupSum(int[] nums, int target){
@@ -90,4 +90,20 @@ public class RecursionClasswork{
     }
   }
 
+  public static boolean groupSumClump(int start, int[] nums, int target){
+    if(target == 0)return true;
+    if(start >= nums.length)return false;
+    else{
+      int times = numsAdj(start, nums, nums[start]);
+      return groupSumClump(start + times, nums, target - (times*nums[start]) ) || groupSumClump(start + times, nums, target);
+    }
+  }
+  public static int numsAdj(int start, int[] nums, int target){
+    int streak = 1;
+    while(start < nums.length && nums[start] == nums[target]){
+      streak++;
+      start++;
+    }
+    return streak;
+  }
 }
