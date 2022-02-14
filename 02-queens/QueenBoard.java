@@ -25,11 +25,26 @@ public class QueenBoard{
     for(int i = 0; i < board.length; i++){
       for (int j = 0; j < board.length; j++){
         if(board[i][j] == -1)Board += "Q ";
-        else Board += "_ ";
+        else Board += board[i][j] + " ";;
       }
       Board += "\n";
     }
     return Board;
+  }
+
+  private void changeThreat(int x, int r, int c){
+    for(int i = r+1; i<board.length; i++){
+      board[i][c] += x;
+    }
+    for(int j = c+1; j<board.length; j++){
+      board[r][j] += x;
+    }
+    for(int i = 1; i < board.length-r; i++){
+      if(i < board.length-c) board[r+i][c+i] += x;
+    }
+    for(int i = board.length-r-1; i >= 0; i--){
+      if(c - i >=0) board[r+i][c-i] += x;
+    }
   }
 
   /**
@@ -37,21 +52,13 @@ public class QueenBoard{
   *@postcondition the board is only changed when the function returns true
   * in which case the queen is added and all it's threatened positions are incremented
   */
-  private boolean addQueen(int r, int c){
+  public boolean addQueen(int r, int c){
     if(board[r][c] != 0) return false;
-    board[r][c] == -1;
-    for(int i = 0; i < board.length; i ++){
-      board[i][c] += 1;
-    }
-    for(int j = 0; j < board.length; j ++){
-      board[r][j] += 1;
-    }
-    for(int i = 0; i < board.length - r; i++){
-      for(int j = 0; j < board.length - c; j++){
-        board[i+r][j+c] += 1;
-      }
-    }
+    changeThreat(1, r, c);
+    board[r][c] = -1;
     return true;
+
+
   }
 
   /**Remove the queen that was added to r,c
@@ -59,22 +66,11 @@ public class QueenBoard{
   *@postcondition the board is modified to remove that queen and all it's
   *threatened positions are decremented
   */
-  private void removeQueen(int r, int c){
-    if(board[r][c] != -1) return false;
-    board[r][c] == -1;
-    for(int i = 0; i < board.length; i ++){
-      board[i][c] += 1;
+  public void removeQueen(int r, int c){
+    if(board[r][c] == -1){
+      changeThreat(-1, r, c);
+      board[r][c] =0;
     }
-    for(int j = 0; j < board.length; j ++){
-      board[r][j] += 1;
-    }
-    for(int i = 0; i < board.length - r; i++){
-      for(int j = 0; j < board.length - c; j++){
-        board[i+r][j+c] += 1;
-      }
-    }
-    return true;
-  }
   }
 
   // /**Find the first solution configuration possible for this size board. Start by placing
