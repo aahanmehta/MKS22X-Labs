@@ -73,19 +73,43 @@ public class QueenBoard{
     }
   }
 
-  // /**Find the first solution configuration possible for this size board. Start by placing
-  // *  the 1st queen in the top left corner, and each new queen in the next ROW. When backtracking
-  // *  move the previous queen to the next valid space. This means everyone will generate the same
-  // *  first solution.
-  // *@postcondition: the board remains in a solved state.
-  // *@return false when the board is not solveable and leaves the board filled with zeros;
-  // *        returns true when the board is solveable, and leaves the board in a solved state
-  // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
-  // */
-  // public boolean solve(){
-  //
-  // }
-  //
+  /**Find the first solution configuration possible for this size board. Start by placing
+  *  the 1st queen in the top left corner, and each new queen in the next ROW. When backtracking
+  *  move the previous queen to the next valid space. This means everyone will generate the same
+  *  first solution.
+  *@postcondition: the board remains in a solved state.
+  *@return false when the board is not solveable and leaves the board filled with zeros;
+  *        returns true when the board is solveable, and leaves the board in a solved state
+  *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
+  */
+  public boolean solve(){
+    return solve(0);
+  }
+  private void animation(){
+
+    System.out.println(Text.go(1,1));
+    System.out.println(this);//can change this to your debug print as well
+    Text.wait(100);//change the delay 1000 = 1 second
+  }
+  public boolean solve(int row){
+    if(row >= board.length)return true;
+    else{
+      for(int j = 0; j < board.length; j++){
+        if(addQueen(row, j)){
+          animation();
+          if(solve(row+1)){
+            return true;
+          }
+          else{
+            removeQueen(row, j);
+            animation();
+          }
+        }
+      }
+    }
+    return false;
+  }
+
   // /**Find all possible solutions to this size board.
   // *@return the number of solutions found, and leaves the board filled with only 0's
   // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
