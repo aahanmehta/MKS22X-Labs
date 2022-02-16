@@ -16,7 +16,8 @@ public class Driver{
     System.out.println(Text.RESET);
     System.out.println(Text.go(1,1));
     System.out.println(b);
-    QueenBoard c = new QueenBoard(8);
+    QueenBoard c = new QueenBoard(6);
+    System.out.println(c);
     System.out.println(c.countSolutions());
   }
 }

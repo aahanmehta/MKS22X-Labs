@@ -6,7 +6,7 @@ public class QueenBoard{
   public QueenBoard(int size){
     board = new int[size][size];
     for(int i = 0; i < size; i++){
-      for(int j =0; j < size; j++){
+      for(int j = 0; j < size; j++){
         board[i][j] = 0;
       }
     }
@@ -36,7 +36,7 @@ public class QueenBoard{
     for(int i = 0; i < board.length; i++){
       for (int j = 0; j < board.length; j++){
         if(board[i][j] == -1)Board += "Q ";
-        else Board += "_";;
+        else Board += board[i][j] + " ";
       }
       Board += "\n";
     }
@@ -129,30 +129,37 @@ public class QueenBoard{
     return countSolutions(0);
   }
   public int countSolutions(int row){
-    int count = 0;
-    // if(!this.isfull()){
-    //   throw new IllegalStateException("IllegalStateException");
+    // if(containsQueen() == true){
+    //   throw new IllegalStateException("no");
     // }
-    if(row >= board.length)count++;
+    int count = 0;
+    if(row >= board.length)count+=1;
     else{
       for(int j = 0; j < board.length; j++){
-        if(addQueen(row, j)){
-          count += countSolutions();
-        }
-        else{
+        if(addQueen(row,j)){
+          count += countSolutions(row+1);
           removeQueen(row, j);
         }
       }
     }
-    return count;
-  }
-  private boolean isfull(){
     for(int i = 0; i < board.length; i++){
       for(int j = 0; j < board.length; j++){
-        if(board[i][j] != 0)return false;
+        board[i][j]=0;
       }
     }
-    return true;
+    return count;
+  }
+
+
+  private boolean containsQueen(){
+    for(int i = 0; i < board.length; i++){
+      for(int j = 0; j < board.length; j++){
+        if(board[i][j] != 0){
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }
