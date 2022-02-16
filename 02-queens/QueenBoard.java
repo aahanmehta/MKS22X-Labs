@@ -1,5 +1,7 @@
 public class QueenBoard{
   private int[][] board;
+  private boolean animated;
+  private int delay;
 
   public QueenBoard(int size){
     board = new int[size][size];
@@ -8,6 +10,15 @@ public class QueenBoard{
         board[i][j] = 0;
       }
     }
+    animated = false;
+    delay = 1000;
+  }
+
+  public void setAnimate(boolean newValue){
+    animated = newValue;
+  }
+  public void setDelay(int newValue){
+    delay = newValue;
   }
   /**
   *@return The output string formatted as follows:
@@ -25,7 +36,7 @@ public class QueenBoard{
     for(int i = 0; i < board.length; i++){
       for (int j = 0; j < board.length; j++){
         if(board[i][j] == -1)Board += "Q ";
-        else Board += board[i][j] + " ";;
+        else Board += "_";;
       }
       Board += "\n";
     }
@@ -96,13 +107,13 @@ public class QueenBoard{
     else{
       for(int j = 0; j < board.length; j++){
         if(addQueen(row, j)){
-          animation();
+          if(animated)animation();
           if(solve(row+1)){
             return true;
           }
           else{
             removeQueen(row, j);
-            animation();
+            if(animated)animation();
           }
         }
       }
@@ -110,11 +121,38 @@ public class QueenBoard{
     return false;
   }
 
-  // /**Find all possible solutions to this size board.
-  // *@return the number of solutions found, and leaves the board filled with only 0's
-  // *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
-  // */
-  // public int countSolutions(){
-  //
-  // }
+  /**Find all possible solutions to this size board.
+  *@return the number of solutions found, and leaves the board filled with only 0's
+  *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
+  */
+  public int countSolutions(){
+    return countSolutions(0);
+  }
+  public int countSolutions(int row){
+    int count = 0;
+    // if(!this.isfull()){
+    //   throw new IllegalStateException("IllegalStateException");
+    // }
+    if(row >= board.length)count++;
+    else{
+      for(int j = 0; j < board.length; j++){
+        if(addQueen(row, j)){
+          count += countSolutions();
+        }
+        else{
+          removeQueen(row, j);
+        }
+      }
+    }
+    return count;
+  }
+  private boolean isfull(){
+    for(int i = 0; i < board.length; i++){
+      for(int j = 0; j < board.length; j++){
+        if(board[i][j] != 0)return false;
+      }
+    }
+    return true;
+  }
+
 }

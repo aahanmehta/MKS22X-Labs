@@ -22,7 +22,7 @@ public class Text{
   public static final String HIDE_CURSOR =  "\033[?25l";
   public static final String SHOW_CURSOR =  "\033[?25h";
   //use this to go back to normal terminal colors
-  public static final String RESET = "\033[c"+SHOW_CURSOR;
+  public static final String RESET = "\033[0m"+SHOW_CURSOR;
   /*Reset colors*/
   public static void reset(){
     System.out.print("\u001b[0m");
