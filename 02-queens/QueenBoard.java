@@ -32,11 +32,12 @@ public class QueenBoard{
   *excludes the characters up to the comment(*)
   */
   public String toString(){
+    int bg = 0;
     String Board = "";
     for(int i = 0; i < board.length; i++){
       for (int j = 0; j < board.length; j++){
         if(board[i][j] == -1)Board += "Q ";
-        else Board += board[i][j] + " ";
+        else Board += "_ ";
       }
       Board += "\n";
     }
@@ -129,9 +130,9 @@ public class QueenBoard{
     return countSolutions(0);
   }
   public int countSolutions(int row){
-    // if(containsQueen() == true){
-    //   throw new IllegalStateException("no");
-    // }
+    if(row == 0  && containsQueen() == true){
+      throw new IllegalStateException("no");
+    }
     int count = 0;
     if(row >= board.length)count+=1;
     else{
@@ -140,11 +141,6 @@ public class QueenBoard{
           count += countSolutions(row+1);
           removeQueen(row, j);
         }
-      }
-    }
-    for(int i = 0; i < board.length; i++){
-      for(int j = 0; j < board.length; j++){
-        board[i][j]=0;
       }
     }
     return count;
