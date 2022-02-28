@@ -26,7 +26,7 @@ public class Maze {
       }
       return maze;
     }catch(FileNotFoundException ex){
-      return 
+       
     }
   }
 
