@@ -47,7 +47,6 @@ public class Maze{
       }
     }
     animate = false;
-    return maze;
   }
 
   private void wait(int millis){
@@ -75,7 +74,14 @@ public class Maze{
   It should look like the text file with some characters replaced.
   */
   public String toString(){
-    return "WRITE THIS METHOD";
+    String leMaze = "";
+    for(int i = 0; i < maze.length; i++){
+      for(int j = 0; j < maze[0].length; j++){
+        leMaze += maze[i][j];
+      }
+      leMaze += "\n";
+    }
+    return leMaze;
   }
 
   /*Wrapper Solve Function returns the helper function
@@ -115,6 +121,7 @@ public class Maze{
     }
 
     //COMPLETE SOLVE
+    if(maze[row][col] == 'E')return 0;  
     return -1; //so it compiles
   }
 }
