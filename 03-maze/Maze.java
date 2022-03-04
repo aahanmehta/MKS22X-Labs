@@ -39,11 +39,11 @@ public class Maze{
     maze = new char[inpet.size()][inpet.get(0).size()];
     for(int i = 0; i < maze.length; i++){
       for(int j = 0; j < maze[0].length; j++){
+        maze[i][j] = inpet.get(i).get(j);
         if(maze[i][j] == 'S'){
           startRow = i;
           startCol = j;
         }
-        maze[i][j] = inpet.get(i).get(j);
       }
     }
     animate = false;
@@ -121,7 +121,28 @@ public class Maze{
     }
 
     //COMPLETE SOLVE
-    if(maze[row][col] == 'E')return 0;  
-    return -1; //so it compiles
+    if(maze[row][col] == 'E')return 0;
+    else if(maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@') return -1;
+    else{
+      maze[row][col] = '@';
+      int s =  solve(row+1,col);
+      if(s > -1){
+        return 1+s;
+      }
+      int n =  solve(row-1,col);
+      if(n > -1){
+        return 1+n;
+      }
+      int e =  solve(row,col+1);
+      if(e > -1){
+        return 1+e;
+      }
+      int w =  solve(row,col-1);
+      if(w > -1){
+        return 1+w;
+      }
+      maze[row][col] = '.';
+    }
+     return -1;//so it compiles
   }
 }
