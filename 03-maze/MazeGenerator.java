@@ -12,7 +12,7 @@ public class MazeGenerator{
     if(startrow == maze.length -1 || startcol == maze[0] -1)return true;
     return false;
   }
-  public static boolean lonely(char[] maze,int startrow,int startcol){
+  public static boolean lonely(char[][] maze,int startrow,int startcol){
     int bors = 0;
     if(maze[startrow+1][startcol] == ' ')bors ++;
     if(maze[startrow-1][startcol] == ' ')bors ++;
@@ -20,10 +20,17 @@ public class MazeGenerator{
     if(maze[startrow][startcol-1] == ' ')bors ++;
     return bors < 2;
   }
+  public int pickDir(){
+    int[] dirs = {1,2,3,4};
+    return maze[(int) (Math.random()*4 +1)];
+  }
   public static void generate(char[][]maze, int startrow, int startcol){
     if(maze[startrow][startcol] == '#' && !atBorder(maze, startrow, startcol) && isLonely(maze, startrow, startcol)){
+      maze[startrow][startcol] = ' ';
       
     }
+    else{
 
+    }
   }
 }
