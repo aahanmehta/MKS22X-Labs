@@ -10,8 +10,9 @@ import java.io.*;
            //you must fill maze with '#'
            MazeGenerator.fill(maze);
            MazeGenerator.generate(maze,startrow,startcol);
+           System.out.println(toString(maze));
            //Print the maze here.
-           System.out.println("MAZE!");//You need a way to show the maze without the array brackets etc.
+           //System.out.println(maze);//You need a way to show the maze without the array brackets etc.
          }else if(args.length == 1  || args.length == 2){
              try{
                  Maze m = new Maze(args[0]);
@@ -30,5 +31,15 @@ import java.io.*;
              System.out.println("To Generate: java KDriver rows cols startRow startCol");
          }
 
+     }
+     public static String toString(char[][] maze){
+       String leMaze = "";
+       for(int i = 0; i < maze.length; i++){
+         for(int j = 0; j < maze[0].length; j++){
+           leMaze += maze[i][j];
+         }
+         leMaze += "\n";
+       }
+       return leMaze;
      }
  }
