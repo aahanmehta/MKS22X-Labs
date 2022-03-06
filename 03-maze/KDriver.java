@@ -1,5 +1,5 @@
 import java.io.*;
- public class Driver{
+ public class KDriver{
      public static void main(String[]args){
          if(args.length == 4){
            int rows = Integer.parseInt(args[0]);
