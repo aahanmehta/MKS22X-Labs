@@ -8,8 +8,9 @@ public class MazeGenerator{
   }
 
   public static boolean atBorder(char[][] maze,int startrow,int startcol){
-    if(startcol == 0 || startrow == 0)return true;
-    if(startrow == maze.length -1 || startcol == maze[0].length -1)return true;
+
+    if(startcol <= 0 || startrow <= 0)return true;
+    if(startrow >= maze.length -1 || startcol >= maze[0].length -1)return true;
     return false;
   }
 
@@ -34,7 +35,7 @@ public class MazeGenerator{
   }
 
   public static void generat(char[][]maze, int startrow, int startcol){
-    if(maze[startrow][startcol] == '#' && !atBorder(maze, startrow, startcol) && lonely(maze, startrow, startcol)){
+    if(!atBorder(maze, startrow, startcol) && lonely(maze, startrow, startcol) && maze[startrow][startcol] == '#' ){
       maze[startrow][startcol] = ' ';
       int[] direcs = pickDir();
       for(int i =0; i < 4; i++){
@@ -50,6 +51,7 @@ public class MazeGenerator{
   }
 
   public static void generate(char[][]maze, int startrow, int startcol){
+    if(startrow>= maze.length-1 || startrow < 1 || startcol>= maze[0].length || startcol < 1)return;
     generat(maze, startrow, startcol);
     maze[startrow][startcol] = 'S';
     int dist = 0;
@@ -65,10 +67,12 @@ public class MazeGenerator{
       for(int j = 1; j < maze[0].length -1; j++){
         if(maze[i][j] == ' '){
           int len = Math.abs(i-startrow) + Math.abs(j-startcol);
-          if(len == dist)maze[i][j] = 'E';
+          if(len == dist){
+            maze[i][j] = 'E';
+            return;
+          }
         }
       }
     }
-
   }
 }
