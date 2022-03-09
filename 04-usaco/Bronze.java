@@ -11,12 +11,13 @@ public class Bronze{
 
   public static void stomp(int[][] lake, int x, int y, int D_s){
     int peak = maxElev(lake, x, y);
-    for(int c = 0; c < D_s; c++){
-      for(int i = 0; i<3; i++){
-        for(int j = 0; j<3; j++){
-          if(i+x>lake.length && j+y>lake[0].length && lake[i+x][j+y] == peak) lake[i+x][j+y] = lake[i+x][j+y] -1;
+    while(D_s > 0){
+      for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+          if(i+x<lake.length && j+y<lake[0].length && lake[i+x][y+j] == peak)lake[i+x][j+y] -= 1;
         }
       }
+      peak--;
       D_s--;
     }
   }
@@ -37,7 +38,7 @@ public class Bronze{
     int maxElev = lake[x][y];
     for(int i = 0; i<3; i++){
       for(int j = 0; j<3; j++){
-        if(i+x>lake.length && j+y>lake[0].length && lake[i+x][j+y] > maxElev) maxElev = lake[i+x][j+y];
+        if(i+x<lake.length && j+y<lake[0].length && lake[i+x][j+y] > maxElev) maxElev = lake[i+x][j+y];
       }
     }
     return maxElev;
@@ -58,14 +59,30 @@ public class Bronze{
           lake[i][j] = input.nextInt();
         }
       }
+      System.out.println(toString(lake));
 
       //begin stomping
-      while(input.hasNextLine()){
-        int x = input.nextInt();
-        int y = input.nextInt();
+      while(input.hasNextInt()){
+        int x = input.nextInt() -1;
+        int y = input.nextInt() -1;
+        System.out.println(x + " " + y);
         int D_s = input.nextInt();
         stomp(lake, x, y, D_s);
+        System.out.println(toString(lake));
+
       }
+      //System.out.println(toString(lake));
       return getVol(lake, e);
+  }
+
+  public static String toString(int[][] lake){
+    String ans = "";
+    for(int i =0; i < lake.length; i++){
+      for(int j =0; j< lake[i].length; j++){
+        ans += lake[i][j] +" ";
+      }
+      ans += "\n";
+    }
+    return ans;
   }
 }
