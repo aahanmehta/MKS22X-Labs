@@ -1,0 +1,9 @@
+This is going to be recursive with a wrapper
+BIG Method solve will take in Bessie's start and end position, 
+it will place an S at the start positiona and E and the end. 
+then it will call the wrapped method, ill call it find with start pos and Time.
+find will take params time, row and column (x, y). if x and y are in the palce
+of E, and the time  is over, it returns one. (you found a path)
+If you've run out of time, not at the end, return 0. 
+If you're on a tree return 0.
+otherwise, return find in every other direction. like x-1,y or x, y+1.
