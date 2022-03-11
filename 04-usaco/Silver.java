@@ -9,21 +9,18 @@ public class Silver{
     }
   }
 
-  public static long find(char[][] pasture, int R1, int R2, int C1, int C2, int time){
-    pasture[R1][C1] = 'S';
-    pasture[R2][C2] = 'E';
-    long paths = find(pasture,R1,C1,time);
-    return paths;
-  }
-
-  public static long find(char[][] pasture, int x, int y, int time){
-    if(x > pasture.length || y > pasture[0].length)return 0;
-    if(time == 0 && pasture[x][y] != 'E')return 0;
-    if(pasture[x][y] == '*')return 0;
-    if(time == 0 && pasture[x][y] == 'E')return 1;
-    else{
-      return find(pasture, x++, y, time--) + find(pasture, x--, y, time--) + find(pasture, x, y++, time--) + find(pasture, x,y--, time--);
+  public static long find(int[][] pasture, int R1, int R2, int C1, int C2, int time){
+    int[][] pasty = pasture;
+    pasty[i][j] == 1;
+    while(time >= 0){
+      for(int i = 0; i < pasture.length; i++){
+        for(int j = 0; j < pasture[i].length; j++){
+          pasture[i][j] == countNay(pasty);
+        }
+      }
     }
+    return 1l;
+
   }
 
   public static long solve(String filename)throws FileNotFoundException{
@@ -35,11 +32,12 @@ public class Silver{
     int cols = Integer.parseInt(set[1]);
     int time = Integer.parseInt(set[2]);
     System.out.println(rows +" " + cols +" "+time);
-    char[][] pasture = new char[rows][cols];
+    int[][] pasture = new int[rows][cols];
     for(int i = 0; i < rows; i++){
       line = input.nextLine();
       for(int j = 0; j < cols; j++){
-        pasture[i][j] = line.charAt(j);
+        if(line.charAt(j) == '.')pasture[i][j] = 0;
+        if(line.charAt(j) == '*')pasture[i][j] = -1;
       }
     }
     System.out.println(toString(pasture));
@@ -54,11 +52,12 @@ public class Silver{
     //return find(pasture, R1, R2, C1, C2, time);
   }
 
-  public static String toString(char[][] lake){
+  public static String toString(int[][] lake){
     String ans = "";
     for(int i =0; i < lake.length; i++){
       for(int j =0; j< lake[i].length; j++){
-        ans += lake[i][j] +" ";
+        if(lake[i][j] >= 0)ans += lake[i][j] +"  ";
+        if(lake[i][j] == -1)ans += lake[i][j] +" ";
       }
       ans += "\n";
     }
