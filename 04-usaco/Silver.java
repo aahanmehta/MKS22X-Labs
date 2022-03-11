@@ -50,7 +50,7 @@ public class Silver{
     int R2 = Integer.parseInt(set[2]) -1;
     int C2 = Integer.parseInt(set[3]) -1;
     System.out.println(R1 +" " + C1 +" "+R2 + "" + C2);
-    return 1l;
+    return find(pasture, R1, R2, C1, C2, time);
     //return find(pasture, R1, R2, C1, C2, time);
   }
 
