@@ -1,13 +1,6 @@
 import java.util.*;
 import java.io.*;
 public class Bronze{
-  public static void main(String[] args) {
-    try{
-      System.out.println(solve("makelake.in"));
-    }catch(FileNotFoundException ex){
-      System.out.println("busted");
-    }
-  }
 
   public static void stomp(int[][] lake, int x, int y, int D_s){
     int peak = maxElev(lake, x, y);
@@ -44,7 +37,8 @@ public class Bronze{
     return maxElev;
   }
 
-  public static long solve(String filename)throws FileNotFoundException{
+  public static long solve(String filename){
+    try{
       File text = new File(filename);
       Scanner input = new Scanner(text);
       int r = input.nextInt();
@@ -59,20 +53,23 @@ public class Bronze{
           lake[i][j] = input.nextInt();
         }
       }
-      System.out.println(toString(lake));
+      // System.out.println(toString(lake));
 
       //begin stomping
       while(input.hasNextInt()){
         int x = input.nextInt() -1;
         int y = input.nextInt() -1;
-        System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
         int D_s = input.nextInt();
         stomp(lake, x, y, D_s);
-        System.out.println(toString(lake));
+        // System.out.println(toString(lake));
 
       }
       //System.out.println(toString(lake));
       return getVol(lake, e);
+    }catch(FileNotFoundException ex){
+      return -1l;
+    }
   }
 
   public static String toString(int[][] lake){
