@@ -14,31 +14,25 @@ public class Preliminary{
 
     int index = (int)(Math.random()*(end -start) + start);
     int pivot = data[index];
-    int temp = data[start];
     int x = start;
-    data[start] = data[index];
-    data[index] = temp;
-    System.out.println(toString(data));
 
     for(int i = start; i <= end; i++){
       if(data[i] <= pivot){
-        temp = data[i];
-        data[x] = temp;
-        data[i] = pivot;
-        System.out.println(toString(data));
-        System.out.println();
+        swap(data, data[i], data[x]);
+        x++;
       }
     }
+
     System.out.println(pivot);
     System.out.println(toString(data));
-    return x + start;
+    return start;
   }
 
   public static void main(String[] args) {
     int[] t1 = {1,7,5,2,3,4};
     int[] t2 = {999,999,999,4,3,2,1,0,999,999,999};
     //System.out.println(toString(t1));
-    System.out.println(partition(t1, 0, 5));
+    System.out.println(partition(t1, 0, 4));
     //System.out.println(toString(t2));
     //System.out.println(partition(t2, 0, 9));
   }
@@ -48,5 +42,11 @@ public class Preliminary{
       ans += c + ", ";
     }
     return ans + ']';
+  }
+
+  private static void swap(int[] data, int x, int y) {
+    int swap = data[x];
+    data[x] = data[y];
+    data[y] = swap;
   }
 }
