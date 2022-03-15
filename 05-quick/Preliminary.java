@@ -10,9 +10,43 @@ public class Preliminary{
   *@return the index of the final position of the pivot element.
   */
   public static int partition ( int [] data, int start, int end){
-    int pivot = data[start + Math.random()*(end-start)];
-    for(int i = start; i < end; i++){
-      if()
+    System.out.println(toString(data));
+
+    int index = (int)(Math.random()*(end -start) + start);
+    int pivot = data[index];
+    int temp = data[start];
+    int x = start;
+    data[start] = data[index];
+    data[index] = temp;
+    System.out.println(toString(data));
+
+    for(int i = start; i <= end; i++){
+      if(data[i] <= pivot){
+        temp = data[i];
+        data[x] = temp;
+        data[i] = pivot;
+        System.out.println(toString(data));
+        System.out.println();
+      }
     }
+    System.out.println(pivot);
+    System.out.println(toString(data));
+    return x + start;
+  }
+
+  public static void main(String[] args) {
+    int[] t1 = {1,7,5,2,3,4};
+    int[] t2 = {999,999,999,4,3,2,1,0,999,999,999};
+    //System.out.println(toString(t1));
+    System.out.println(partition(t1, 0, 5));
+    //System.out.println(toString(t2));
+    //System.out.println(partition(t2, 0, 9));
+  }
+  public static String toString(int[] ary){
+    String ans = "[";
+    for(int c:ary){
+      ans += c + ", ";
+    }
+    return ans + ']';
   }
 }
