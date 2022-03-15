@@ -11,28 +11,39 @@ public class Preliminary{
   */
   public static int partition ( int [] data, int start, int end){
     System.out.println(toString(data));
-
-    int index = (int)(Math.random()*(end -start) + start);
-    int pivot = data[index];
-    int x = start;
-
-    for(int i = start; i <= end; i++){
-      if(data[i] <= pivot){
-        swap(data, data[i], data[x]);
-        x++;
+    int index = (int)(Math.random()*(end-start+1) + start);
+    int pivot = data[start];
+    int x = 0;
+    index = start;
+    swap(data, start, index);
+    for(int i = start; i <= end - x; i++){
+      if(data[i] < pivot){
+        swap(data, i, index);
+        index++;
+      }
+      else if(data[i] > pivot){
+        swap(data, i, end - x);
+        i--;
+        x--;
       }
     }
 
     System.out.println(pivot);
     System.out.println(toString(data));
-    return start;
+    return index;
+  }
+
+  private static void swap(int[] data, int x, int y) {
+    int swap = data[x];
+    data[x] = data[y];
+    data[y] = swap;
   }
 
   public static void main(String[] args) {
     int[] t1 = {1,7,5,2,3,4};
     int[] t2 = {999,999,999,4,3,2,1,0,999,999,999};
     //System.out.println(toString(t1));
-    System.out.println(partition(t1, 0, 4));
+    System.out.println(partition(t1, 0, 5));
     //System.out.println(toString(t2));
     //System.out.println(partition(t2, 0, 9));
   }
@@ -44,9 +55,4 @@ public class Preliminary{
     return ans + ']';
   }
 
-  private static void swap(int[] data, int x, int y) {
-    int swap = data[x];
-    data[x] = data[y];
-    data[y] = swap;
-  }
 }
