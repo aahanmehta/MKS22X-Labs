@@ -18,7 +18,25 @@ public class Quick{
     }
   }
 
+  public static void quicksort(int[] data){
+    quicksort(data,0,data.length-1);
+  }
+  public static void quicksort(int[] data, int start, int end){
 
+  }
+
+  public static int quickselect(int[] data, int k){
+    int pIndex = partition(data, 0, data.length-1);
+    while(!pIndex==k){
+      if(pIndex > k){
+        pIndex = partition(data, pIndex+1, data.length-1);
+      }
+      else{
+        pIndex = partition(data, 0, pIndex-1);
+      }
+    }
+    return data[k];
+  }
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
   * corresponding element is designated the pivot element.
