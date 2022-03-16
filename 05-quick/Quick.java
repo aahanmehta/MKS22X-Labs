@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class Preliminary{
+public class Quick{
   public static void main(String[] args) {
     int [] d1 = new int[] {4,3,2,1,0};
     int [] d2 = new int[] {0};
@@ -17,6 +17,8 @@ public class Preliminary{
       System.out.println();
     }
   }
+
+
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
   * corresponding element is designated the pivot element.
@@ -34,11 +36,11 @@ public class Preliminary{
     int index = (int)(Math.random()*(end-start+1) + start);
     int pivot = data[index];
     int x = 0;
-    boolean alt = true;
+    int alt = 0;
     index = start;
     swap(data, start, index);
 
-    for(int i = start; i <= end - x; i++){
+    for(int i = start; i < end - x; i++){
       if(data[i] < pivot){
         swap(data, i, index);
         index++;
@@ -48,19 +50,19 @@ public class Preliminary{
         i--;
         x++;
       }
-      // else if(data[i] == pivot){
-      //   if(alt){
-      //     swap(data, i, end -x);
-      //     i--;
-      //     x++;
-      //     alt = false;
-      //   }
-      //   else{
-      //     swap(data, i, index);
-      //     index++;
-      //     alt = true;
-      //   }
-      // }
+      else if(data[i] == pivot){
+        if(alt%2 == 0){
+          alt++;
+          swap(data, i, end-x);
+          i--;
+          x++;
+        }
+        else{
+          swap(data, i, index);
+          index++;
+          alt++;
+        }
+      }
     }
 
     // System.out.println(pivot);
