@@ -9,30 +9,40 @@ public class Quick{
     int [] d6 = new int[] {997,998,999,4,3,2,1,0};
     int [] d7 = new int[] {999,5,999,5,1,4,2,5,5,999,99};
     int[][] data = new int[][] {d1,d2,d3,d4,d5,d6,d7};
-    for(int i = 0; i < data.length; i++){
-      System.out.println("Original: "+Arrays.toString(data[i]));
-      int pivot = partition( data[i] , 0, data[i].length-1);
-      System.out.println("Pivot value: "+data[i][pivot]+ ", Pivot index: "+pivot);
-      System.out.println("Modified: "+Arrays.toString(data[i]));
-      System.out.println();
-    }
+    // for(int i = 0; i < data.length; i++){
+    //   System.out.println("Original: "+Arrays.toString(data[i]));
+    //   int pivot = partition( data[i] , 0, data[i].length-1);
+    //   System.out.println("Pivot value: "+data[i][pivot]+ ", Pivot index: "+pivot);
+    //   System.out.println("Modified: "+Arrays.toString(data[i]));
+    //   System.out.println();
+    // }
+    System.out.println(Arrays.toString(d1));
+    System.out.println(quickselect(d1, 5));
+
+
   }
+
 
   public static void quicksort(int[] data){
     quicksort(data,0,data.length-1);
   }
   public static void quicksort(int[] data, int start, int end){
-
+    if(start-end > 1){
+      int pIndex = partition(data, start, end);
+      quicksort(data, start, pIndex);
+      quicksort(data, pIndex+1, end);
+    }
   }
 
   public static int quickselect(int[] data, int k){
+    if(k>=data.length || k<0)return -1;
     int pIndex = partition(data, 0, data.length-1);
-    while(!pIndex==k){
-      if(pIndex > k){
-        pIndex = partition(data, pIndex+1, data.length-1);
+    while(k != pIndex){
+      if(k < pIndex){
+        pIndex = partition(data, 0, pIndex);
       }
       else{
-        pIndex = partition(data, 0, pIndex-1);
+        pIndex = partition(data, pIndex+1, data.length-1);
       }
     }
     return data[k];
@@ -48,39 +58,45 @@ public class Quick{
   *@return the index of the final position of the pivot element.
   */
   public static int partition ( int [] data, int start, int end){
-    //System.out.println(toString(data));
-    if(data.length<1)return -1;
-    if(data.length==1)return 0;
-    int index = (int)(Math.random()*(end-start+1) + start);
+    if(data.length == 1)return 0;
+    int index = (int) (Math.random() * (end-start+1) + start);
+    //System.out.println(index);
     int pivot = data[index];
-    int x = 0;
-    int alt = 0;
+    //System.out.println(pivot);
+    int edge = 0;
+    boolean alt = false;
+    swap(data, index, start);
     index = start;
-    swap(data, start, index);
-
-    for(int i = start; i < end - x; i++){
+    // System.out.println(Arrays.toString(data));
+    // System.out.println(index);
+    // System.out.println("loop");
+    // System.out.println();
+    for(int i = start+1; i <= end - edge; i++){
       if(data[i] < pivot){
         swap(data, i, index);
         index++;
       }
       else if(data[i] > pivot){
-        swap(data, i, end - x);
+        swap(data, i, end - edge);
+        edge++;
         i--;
-        x++;
       }
       else if(data[i] == pivot){
-        if(alt%2 == 0){
-          alt++;
-          swap(data, i, end-x);
-          i--;
-          x++;
-        }
-        else{
+        if(alt){
+          alt = false;
           swap(data, i, index);
           index++;
-          alt++;
+        }
+        else{
+          alt = true;
+          swap(data,i,end -edge);
+          edge++;
+          i--;
         }
       }
+      // System.out.println(Arrays.toString(data));
+      // System.out.println(index);
+      // System.out.println();
     }
 
     // System.out.println(pivot);
