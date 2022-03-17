@@ -16,40 +16,37 @@ public class Quick{
     //   System.out.println("Modified: "+Arrays.toString(data[i]));
     //   System.out.println();
     // }
-    for(int i = 0; i < data.length; i++){
-      System.out.println("Original: "+Arrays.toString(data[i]));
-      quicksort(data[i]);
-      System.out.println("Original: "+Arrays.toString(data[i]));
-      System.out.println();
-    }
+    // for(int i = 0; i < data.length; i++){
+    //   System.out.println("Original: "+Arrays.toString(data[i]));
+    //   quicksort(data[i]);
+    //   System.out.println("Sorted: "+Arrays.toString(data[i]));
+    //   System.out.println();
+    // }
 
   }
 
-
-  public static void quicksort(int[] data){
-    quicksort(data,0,data.length-1);
-  }
-  public static void quicksort(int[] data, int start, int end){
-    if(end - start >= 1){  
-      int pIndex = partition(data, start, end);
-      quicksort(data, start, pIndex-1);
-      quicksort(data, pIndex+1, end);
-    }
-  }
-
-  public static int quickselect(int[] data, int k){
-    if(k>=data.length || k<0)return -1;
-    int pIndex = partition(data, 0, data.length-1);
-    while(k != pIndex){
-      if(k < pIndex){
-        pIndex = partition(data, 0, pIndex-1);
+  public static int partitionDutch(int[] data, int start, int end){
+    int index = (int) (Math.random() * (end-start) + start);
+    int pivot = data[index];
+    swap(data, index, start);
+    index = start;
+    
+    for(int i = start+1; i < end; i++){
+      if(data[i] < pivot){
+        swap(data, index, start);
+        index++;
       }
-      else{
-        pIndex = partition(data, pIndex+1, data.length-1);
+      else if(data[i] > pivot){
+        swap(data, i, index);
+        end--;
+        i--;
+      }
+      else if(data[i] == pivot){
+        if()
       }
     }
-    return data[k];
   }
+
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
   * corresponding element is designated the pivot element.
@@ -103,6 +100,30 @@ public class Quick{
     // System.out.println(pivot);
     // System.out.println(toString(data));
     return index;
+  }
+  public static void quicksort(int[] data){
+    quicksort(data,0,data.length-1);
+  }
+  public static void quicksort(int[] data, int start, int end){
+    if(end - start >= 1){
+      int pIndex = partition(data, start, end);
+      quicksort(data, start, pIndex-1);
+      quicksort(data, pIndex+1, end);
+    }
+  }
+
+  public static int quickselect(int[] data, int k){
+    if(k>=data.length || k<0)return -1;
+    int pIndex = partition(data, 0, data.length-1);
+    while(k != pIndex){
+      if(k < pIndex){
+        pIndex = partition(data, 0, pIndex-1);
+      }
+      else{
+        pIndex = partition(data, pIndex+1, data.length-1);
+      }
+    }
+    return data[k];
   }
 
   private static void swap(int[] data, int x, int y) {
