@@ -1,7 +1,7 @@
 import java.util.Arrays;
 public class Quick{
   public static void main(String[] args) {
-    int [] d1 = new int[] {4,3,2,1,0};
+    int [] d1 = new int[] {-4,3,-2,-1,0,8,9,-15};
     int [] d2 = new int[] {0};
     int [] d3 = new int[] {1,1,1,1,1};
     int [] d4 = new int[] {993,994,995,4,3,2,1,0,997,998,999};
@@ -16,9 +16,12 @@ public class Quick{
     //   System.out.println("Modified: "+Arrays.toString(data[i]));
     //   System.out.println();
     // }
-    System.out.println(Arrays.toString(d1));
-    System.out.println(quickselect(d1, 5));
-
+    for(int i = 0; i < data.length; i++){
+      System.out.println("Original: "+Arrays.toString(data[i]));
+      quicksort(data[i]);
+      System.out.println("Original: "+Arrays.toString(data[i]));
+      System.out.println();
+    }
 
   }
 
@@ -27,10 +30,10 @@ public class Quick{
     quicksort(data,0,data.length-1);
   }
   public static void quicksort(int[] data, int start, int end){
-    if(start-end > 1){
+    if(end - start > 1){
       int pIndex = partition(data, start, end);
       quicksort(data, start, pIndex);
-      quicksort(data, pIndex+1, end);
+      quicksort(data, pIndex, end);
     }
   }
 
@@ -39,7 +42,7 @@ public class Quick{
     int pIndex = partition(data, 0, data.length-1);
     while(k != pIndex){
       if(k < pIndex){
-        pIndex = partition(data, 0, pIndex);
+        pIndex = partition(data, 0, pIndex-1);
       }
       else{
         pIndex = partition(data, pIndex+1, data.length-1);
@@ -58,12 +61,10 @@ public class Quick{
   *@return the index of the final position of the pivot element.
   */
   public static int partition ( int [] data, int start, int end){
-    if(data.length == 1)return 0;
     int index = (int) (Math.random() * (end-start+1) + start);
     //System.out.println(index);
     int pivot = data[index];
     //System.out.println(pivot);
-    int edge = 0;
     boolean alt = false;
     swap(data, index, start);
     index = start;
@@ -71,14 +72,14 @@ public class Quick{
     // System.out.println(index);
     // System.out.println("loop");
     // System.out.println();
-    for(int i = start+1; i <= end - edge; i++){
+    for(int i = start+1; i <= end; i++){
       if(data[i] < pivot){
         swap(data, i, index);
         index++;
       }
       else if(data[i] > pivot){
-        swap(data, i, end - edge);
-        edge++;
+        swap(data, i, end);
+        end--;
         i--;
       }
       else if(data[i] == pivot){
@@ -89,8 +90,8 @@ public class Quick{
         }
         else{
           alt = true;
-          swap(data,i,end -edge);
-          edge++;
+          swap(data,i,end);
+          end--;
           i--;
         }
       }
