@@ -30,10 +30,10 @@ public class Quick{
     quicksort(data,0,data.length-1);
   }
   public static void quicksort(int[] data, int start, int end){
-    if(end - start > 1){
+    if(end - start >= 1){  
       int pIndex = partition(data, start, end);
-      quicksort(data, start, pIndex);
-      quicksort(data, pIndex, end);
+      quicksort(data, start, pIndex-1);
+      quicksort(data, pIndex+1, end);
     }
   }
 
@@ -61,7 +61,7 @@ public class Quick{
   *@return the index of the final position of the pivot element.
   */
   public static int partition ( int [] data, int start, int end){
-    int index = (int) (Math.random() * (end-start+1) + start);
+    int index = (int) (Math.random() * (end-start) + start);
     //System.out.println(index);
     int pivot = data[index];
     //System.out.println(pivot);
