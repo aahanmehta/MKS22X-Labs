@@ -17,15 +17,15 @@ public class Tester {
     System.out.println("\n" + time[1]/time[0]);*/
   }
   public static void test_all() {
-    print("Negative", testNeg());
-    print("Reverse", testRev());
+    // print("Negative", testNeg());
+    // print("Reverse", testRev());
     print("Tiny Random", testRandom_1());
-    print("Big Random", testRandom_0());
-    print("Equal", testEqual());
-    long start = System.currentTimeMillis();
-    print("Sorted", testSorted());
-    long end = System.currentTimeMillis();
-    if (end - start >= 5000) System.out.println("your sort works on sorted arrays but takes way too long, u didn't the dutch partition thing or ur computer is ass\n");
+    // print("Big Random", testRandom_0());
+    // print("Equal", testEqual());
+    // long start = System.currentTimeMillis();
+    // print("Sorted", testSorted());
+    // long end = System.currentTimeMillis();
+    // if (end - start >= 5000) System.out.println("your sort works on sorted arrays but takes way too long, u didn't the dutch partition thing or ur computer is ass\n");
   }
   public static void print(String type, boolean pass) {
     if (pass) {

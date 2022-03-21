@@ -43,6 +43,7 @@ public class Merge{
     return merged;
   }
   public static void mergesort(int[] data){
+    if(data.length < 44)insertionSort(data);
     int[] temp = mergesortH(data);
     for(int i = 0; i < temp.length; i++){
       data[i] = temp[i];
@@ -63,11 +64,29 @@ public class Merge{
     return data;
   }
 
+  public static void insertionSort(int[] ary){
+    /*Your implementation here*/
+    for(int i = 1; i < ary.length; i++){
+      int prev = i-1;
+      int rightpos = i;
+      int val = ary[i];
+      while(prev >= 0 && ary[i] < ary[prev]){
+        rightpos--;
+        prev--;
+      }
+      for(int j = i -1; j >= rightpos; j--){
+        ary[j+1] = ary[j];
+      }
+      ary[rightpos] = val;
+    }
+  }
+
   private static void copy(int[] copy, int[] og, int start, int end){
     for(int i = start; i < end; i++){
       copy[i-start] = og[i];
     }
-
   }
+
+
 
 }
