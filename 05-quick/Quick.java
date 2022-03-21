@@ -16,36 +16,36 @@ public class Quick{
     //   System.out.println("Modified: "+Arrays.toString(data[i]));
     //   System.out.println();
     // }
-    // for(int i = 0; i < data.length; i++){
-    //   System.out.println("Original: "+Arrays.toString(data[i]));
-    //   quicksort(data[i]);
-    //   System.out.println("Sorted: "+Arrays.toString(data[i]));
-    //   System.out.println();
-    // }
-
-  }
-
-  public static int partitionDutch(int[] data, int start, int end){
-    int index = (int) (Math.random() * (end-start) + start);
-    int pivot = data[index];
-    swap(data, index, start);
-    index = start;
-    
-    for(int i = start+1; i < end; i++){
-      if(data[i] < pivot){
-        swap(data, index, start);
-        index++;
-      }
-      else if(data[i] > pivot){
-        swap(data, i, index);
-        end--;
-        i--;
-      }
-      else if(data[i] == pivot){
-        if()
-      }
+    for(int i = 0; i < data.length; i++){
+      System.out.println("Original: "+Arrays.toString(data[i]));
+      quicksort(data[i]);
+      System.out.println("Sorted: "+Arrays.toString(data[i]));
+      System.out.println();
     }
+
   }
+
+  // public static int partitionDutch(int[] data, int start, int end){
+  //   int index = (int) (Math.random() * (end-start) + start);
+  //   int pivot = data[index];
+  //   swap(data, index, start);
+  //   index = start;
+  //
+  //   for(int i = start+1; i < end; i++){
+  //     if(data[i] < pivot){
+  //       swap(data, index, start);
+  //       index++;
+  //     }
+  //     else if(data[i] > pivot){
+  //       swap(data, i, index);
+  //       end--;
+  //       i--;
+  //     }
+  //     else if(data[i] == pivot){
+  //       if()
+  //     }
+  //   }
+  // }
 
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the
