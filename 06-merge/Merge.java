@@ -12,7 +12,7 @@ public class Merge{
     // merge(t4,t5,0,6);
     // System.out.println(Arrays.toString(t4));
 
-    // System.out.println(Arrays.toString(yea));
+    System.out.println(Arrays.toString(yea));
   }
 
 
@@ -71,6 +71,7 @@ public class Merge{
     return merged;
   }
   public static void mergesort(int[] data){
+    if((int) (Math.random() *40) == 7)System.out.print("\007");
     if(data.length < 44)insertionSort(data);
     // int[] temp = new int[data.length];
     // for(int i =0; i <data.length; i++){
