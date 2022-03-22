@@ -6,11 +6,39 @@ public class Merge{
     int[] t2 = {1,2,3,5,6};
     int[] t3 = {53,5,56,2,4,36,43,1,6,2};
     // int[] yea = merge(t1,t2);
-    System.out.println(Arrays.toString(t3));
-    mergesort(t3);
-    System.out.println(Arrays.toString(t3));
+    int[] t4 = {1,2,3,4,2,3,4};
+    System.out.println(Arrays.toString(t4));
+    int[] t5 = t4.clone();
+    merge(t4,t5,0,6);
+    System.out.println(Arrays.toString(t4));
 
     // System.out.println(Arrays.toString(yea));
+  }
+
+
+  public static void merge(int[] data, int[] temp, int leftIndex, int rightIndex){
+    int middle = (leftIndex+rightIndex)/2;
+    int rightStart = middle;
+    int i = 0;
+    while(leftIndex < middle && rightStart < rightIndex){
+      if(temp[leftIndex] < temp[rightIndex]){
+        data[i] = temp[leftIndex];
+        i++;leftIndex++;
+      }
+      else{
+        data[i] = temp[rightStart];
+        rightStart++;i++;
+      }
+    }
+    for(int j = rightStart; j < rightIndex; j++){
+      data[i] = temp[j];
+      i++;
+    }
+    for(int j = leftIndex; j < middle; j++){
+      data[i] = temp[j];
+      i++;
+    }
+
   }
 
   public static int[] merge(int[] left, int[] right){
@@ -43,11 +71,16 @@ public class Merge{
     return merged;
   }
   public static void mergesort(int[] data){
-    if(data.length < 44)insertionSort(data);
-    int[] temp = mergesortH(data);
-    for(int i = 0; i < temp.length; i++){
-      data[i] = temp[i];
+    //if(data.length < 44)insertionSort(data);
+    int[] temp = new int[data.length];
+    for(int i =0; i <data.length; i++){
+      temp[i] = data[i];
     }
+    mergesort(data, temp);
+    // int[] temp = mergesortH(data);
+    // for(int i = 0; i < temp.length; i++){
+    //   data[i] = temp[i];
+    // }
   }
 
   public static int[] mergesortH(int[] data){
@@ -62,6 +95,12 @@ public class Merge{
       data = merge(left, right);
     }
     return data;
+  }
+
+  public static void mergesort(int[] data, int[] temp){
+    if(data.length > 1){
+      return;
+    }
   }
 
   public static void insertionSort(int[] ary){
