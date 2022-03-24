@@ -23,7 +23,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = random.nextInt(100);
-      if((int) (Math.random() *50) == 7)System.out.print("\007");
+      // if((int) (Math.random() *50) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -40,7 +40,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = random.nextInt(100);
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -57,7 +57,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = random.nextInt(200) - 100;
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -74,7 +74,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = random.nextInt(1000000);
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -91,7 +91,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = 0;
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -109,7 +109,7 @@ public class MergeTest {
     int value = random.nextInt(1000000);
     for (int i = 0; i < ary.length; i++) {
       ary[i] = value;
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -125,7 +125,7 @@ public class MergeTest {
     Random random = new Random();
     for (int i = 0; i < ary.length; i++) {
       ary[i] = random.nextInt(1000000);
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -141,7 +141,7 @@ public class MergeTest {
     for (int i = 0; i < 1000; i++) {
       if (!randomHun()) {
         result = false;
-        if((int) (Math.random() *10) == 7)System.out.print("\007");
+        // if((int) (Math.random() *10) == 7)System.out.print("\007");
       }
     }
     double runTime = ((double) (System.currentTimeMillis() - time)) / ( 1000.0);
@@ -156,7 +156,7 @@ public class MergeTest {
     int value = random.nextInt(1000000);
     for (int i = 0; i < ary.length; i++) {
       ary[i] = value;
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);
@@ -174,7 +174,7 @@ public class MergeTest {
     int value = random.nextInt(1000000);
     for (int i = 0; i < ary.length; i++) {
       ary[i] = value;
-      if((int) (Math.random() *10) == 7)System.out.print("\007");
+      // if((int) (Math.random() *10) == 7)System.out.print("\007");
     }
     int[] sortedAry = aryCopy(ary);
     Arrays.sort(sortedAry);

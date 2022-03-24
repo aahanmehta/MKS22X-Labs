@@ -5,14 +5,19 @@ public class Merge{
     int[] t1 = {1,2,5,7,54};
     int[] t2 = {1,2,3,5,6};
     int[] t3 = {53,5,56,2,4,36,43,1,6,2};
-    int[] yea = merge(t1,t2);
     int[] t4 = {1,2,3,4,2,3,4};
     // System.out.println(Arrays.toString(t4));
     // int[] t5 = t4.clone();
     // merge(t4,t5,0,6);
     // System.out.println(Arrays.toString(t4));
+    int[][] t5 = {t1,t2,t3,t4};
+    for(int i = 0; i < t5.length; i++){
+      System.out.println(Arrays.toString(t5[i]));
+      mergesort(t5[i]);
+      System.out.println(Arrays.toString(t5[i]));
 
-    System.out.println(Arrays.toString(yea));
+    }
+    // System.out.println(Arrays.toString(yea));
   }
 
 
@@ -71,7 +76,7 @@ public class Merge{
     return merged;
   }
   public static void mergesort(int[] data){
-    if((int) (Math.random() *40) == 7)System.out.print("\007");
+    if((int) (Math.random() *400) == 7)System.out.print("\007");
     if(data.length < 44)insertionSort(data);
     // int[] temp = new int[data.length];
     // for(int i =0; i <data.length; i++){
