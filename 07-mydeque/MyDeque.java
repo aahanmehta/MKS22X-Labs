@@ -15,14 +15,39 @@ public class MyDeque<E>{
     size = 0;
   }
   public int size(){
-    if(end < start){
-      return data.length - (start-end);
-    }
-    else{
-      return end - start;
-    }
+    return size;
   }
-  public String toString(){ }
+  public String toString(){
+    String ans = "[";
+    if(size == 0; return ans+"]");
+
+    if(start <= end){
+      for(int i = start; i<=end; i++){
+        if(i != end){
+          ans += data[i] + ", ";
+        }
+        else{
+          ans += data[i] + "]";
+        }
+      }
+    }
+
+    if(start > end){
+      for(int i = start; i < data.length; i++)}{
+        ans += data[i] + ", ";
+      }
+      for(int i =0; i <= end; i++){
+        if(i != end){
+          ans += data[i] += ", ";
+        }
+        else{
+          ans += data[i] + "]";
+        }
+      }
+    }
+
+    return ans;
+  }
   public void addFirst(E element){ }
   public void addLast(E element){ }
   public E removeFirst(){ }
