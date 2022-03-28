@@ -14,9 +14,11 @@ public class MyDeque<E>{
     data = d;
     size = 0;
   }
+
   public int size(){
     return size;
   }
+
   public String toString(){
     String ans = "[";
     if(size == 0; return ans+"]");
@@ -45,15 +47,43 @@ public class MyDeque<E>{
         }
       }
     }
-
     return ans;
   }
-  public void addFirst(E element){ }
-  public void addLast(E element){ }
-  public E removeFirst(){ }
-  public E removeLast(){ }
-  public E getFirst(){ }
-  public E getLast(){ }
-}
 
+  public void addFirst(E element){
+    if(size == data.length){
+      
+    }
+    if(size == 0){
+      start = 0;
+      data[start] = element;
+      end = 0;
+    }
+
+    else{
+      if(start >0){
+        start--;
+        data[start] = element;
+      }
+      else{
+        start == data.length-1;
+        data[]
+      }
+    }
+
+  }
+
+  public void addLast(E element){ }
+
+  public E removeFirst(){ }
+
+  public E removeLast(){ }
+
+  public E getFirst(){
+    return data[start];
+  }
+
+  public E getLast(){
+    return data[end];
+  }
 }
