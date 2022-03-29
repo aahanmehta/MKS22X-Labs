@@ -2,27 +2,20 @@ import java.util.*;
 
 public class DequeTest {
   public static void main(String[] args) {
-    // System.out.println(1);
-    // AddLast15();
-    // System.out.println(2);
-    // AddFirst15();
-    // System.out.println(3);
-    // AddFirstLast15();
-    // System.out.println(4);
-    // AddRemove15();
-    // System.out.println(5);
+    AddLast15();
+    AddFirst15();
+    AddFirstLast15();
+    AddRemove15();
     AddRemove15Add10();
-    // System.out.println(6);
-    // Add15RemoveFirst10();
-    // System.out.println(7);
-    // Add15RemoveLast10();
-    // System.out.println(8);
-    // EmptyDeque();
-    // System.out.println(9);
-    // EmptyDequeAddLast15();
-    // EmptyDequeAddFirst15();
-    // ErrorTest();
-    // DequeCompare();
+    Add15RemoveFirst10();
+    Add15RemoveLast10();
+    EmptyDeque();
+    EmptyDequeAddLast15();
+    EmptyDequeAddFirst15();
+    ErrorTest();
+    DequeCompare();
+    RemoveLastTesting();
+    RemoveFirstTesting();
   }
 
   public static void AddLast15() {
@@ -79,7 +72,7 @@ public class DequeTest {
     System.out.println("Correct: " + (real.toString().equals(test.toString())));
     System.out.println();
   }
-
+  
   public static void AddRemove15Add10() {
     MyDeque test = new MyDeque<Integer>();
     Deque real = new LinkedList<Integer>();
@@ -88,16 +81,10 @@ public class DequeTest {
       test.removeLast();
       real.addLast(i);
       real.removeLast();
-      System.out.println();
     }
-    System.out.println(test.toString());
-    System.out.println(test.toStringDebug());
-    System.out.println();
     for (int i = 0; i < 10; i++) {
       test.addLast(i);
       real.addLast(i);
-      // System.out.println(test.toStringDebug());
-      System.out.println();
     }
     System.out.println("Should print a deque of numbers from 0 to 9");
     System.out.println(test);
@@ -140,37 +127,91 @@ public class DequeTest {
   }
 
   public static void EmptyDeque() {
+    System.out.println("Should print an empty deque");
     MyDeque test = new MyDeque<Integer>(0);
     Deque real = new LinkedList<Integer>();
-    System.out.println("Should print an empty deque");
     System.out.println(test);
     System.out.println("Correct: " + (real.toString().equals(test.toString())));
     System.out.println();
   }
 
   public static void EmptyDequeAddLast15() {
+    System.out.println("Starts with a capacity of zero, should print a deque of numbers from 0 to 14 incrementing by 1");
     MyDeque test = new MyDeque<Integer>(0);
     Deque real = new LinkedList<Integer>();
     for (int i = 0; i < 15; i++) {
       test.addLast(i);
       real.addLast(i);
     }
-    System.out.println("Starts with a capacity of zero, should print a deque of numbers from 0 to 14 incrementing by 1");
     System.out.println(test);
     System.out.println("Correct: " + (real.toString().equals(test.toString())));
     System.out.println();
   }
 
   public static void EmptyDequeAddFirst15() {
+    System.out.println("Starts with a capacity of zero, should print a deque of numbers from 14 to 0 decrementing by 1");
     MyDeque test = new MyDeque<Integer>(0);
     Deque real = new LinkedList<Integer>();
     for (int i = 0; i < 15; i++) {
       test.addFirst(i);
       real.addFirst(i);
     }
-    System.out.println("Starts with a capacity of zero, should print a deque of numbers from 14 to 0 decrementing by 1");
     System.out.println(test);
     System.out.println("Correct: " + (real.toString().equals(test.toString())));
+    System.out.println();
+  }
+
+  public static void RemoveLastTesting() {
+    MyDeque test = new MyDeque<Integer>();
+    Deque real = new LinkedList<Integer>();
+    test.addFirst(1);
+    real.addFirst(1);
+    for (int i = 0; i < 8; i++) {
+      test.addLast(i);
+      test.removeFirst();
+      real.addLast(i);
+      real.removeFirst();
+    }
+    for (int i = 0; i < 100; i++) {
+      test.addLast(i);
+      real.addLast(i);
+    }
+    int length = test.size();
+    for (int i = 0; i < length; i++) {
+      if (!test.removeLast().equals(real.removeLast())) {
+        System.out.println("After removing and adding 10 times, adding 100 values and removing from all from the last does not work as predicted");
+        System.out.println();
+        return;
+      }
+    }
+    System.out.println("After removing and adding 10 times, adding 100 values and removing them all from the last does work as predicted");
+    System.out.println();
+  }
+
+  public static void RemoveFirstTesting() {
+    MyDeque test = new MyDeque<Integer>();
+    Deque real = new LinkedList<Integer>();
+    test.addFirst(1);
+    real.addFirst(1);
+    for (int i = 0; i < 8; i++) {
+      test.addLast(i);
+      test.removeFirst();
+      real.addLast(i);
+      real.removeFirst();
+    }
+    for (int i = 0; i < 100; i++) {
+      test.addLast(i);
+      real.addLast(i);
+    }
+    int length = test.size();
+    for (int i = 0; i < length; i++) {
+      if (!test.removeFirst().equals(real.removeFirst())) {
+        System.out.println("After removing and adding 10 times, adding 100 values and removing them all from the first does not work as predicted");
+        System.out.println();
+        return;
+      }
+    }
+    System.out.println("After removing and adding 10 times, adding 100 values and removing them all from the first does work as predicted");
     System.out.println();
   }
 
@@ -227,5 +268,6 @@ public class DequeTest {
       }
     }
     System.out.println("Functions as a real deque would when adding and then removing many random values");
+    System.out.println();
   }
 }
