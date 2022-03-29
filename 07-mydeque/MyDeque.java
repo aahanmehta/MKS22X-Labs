@@ -51,6 +51,16 @@ public class MyDeque<E>{
     return ans;
   }
 
+  public String toStringDebug(){
+    System.out.println("start: " + start);
+    System.out.println("end: " + end);
+    String ans = "[";
+    for(E c : data){
+      ans += c +", ";
+    }
+    return ans + "]";
+  }
+
   public void addFirst(E element){
     if(size == data.length){
       expand();
@@ -124,19 +134,35 @@ public class MyDeque<E>{
     return data[end];
   }
 
+  public int getStart(){
+    return start;
+  }
+  public int getEnd(){
+    return end;
+  }
+  private void stuff(){
+    System.out.println("start: " + getStart() + "  end: " + getEnd());
+    System.out.println(toString());
+    System.out.println(size());
+    System.out.println();
+  }
+
   public static void main(String[] args) {
     MyDeque a = new MyDeque<Integer>(2);
-    System.out.println(a.toString());
-    System.out.println(a.size());
-    a.addFirst(1);
-    a.addFirst(1342);
-    System.out.println(a.size());
-    a.addFirst(13);
-    a.addLast(99);
-    System.out.println(a.size());
-    a.addLast(142);
-    System.out.println(a.size());
-    System.out.println(a.toString());
+    // System.out.println(a.toString());
+    // System.out.println(a.size());
+
+    a.addLast(1);
+    a.stuff();
+
+    a.removeLast();
+    a.stuff();
+
+    a.addLast(1342);
+    a.stuff();
+
+    a.removeLast();
+    a.stuff();
     // System.out.println(a.size());
   }
 }

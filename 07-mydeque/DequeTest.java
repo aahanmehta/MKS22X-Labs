@@ -2,18 +2,27 @@ import java.util.*;
 
 public class DequeTest {
   public static void main(String[] args) {
-    AddLast15();
-    AddFirst15();
-    AddFirstLast15();
-    AddRemove15();
+    // System.out.println(1);
+    // AddLast15();
+    // System.out.println(2);
+    // AddFirst15();
+    // System.out.println(3);
+    // AddFirstLast15();
+    // System.out.println(4);
+    // AddRemove15();
+    // System.out.println(5);
     AddRemove15Add10();
-    Add15RemoveFirst10();
-    Add15RemoveLast10();
-    EmptyDeque();
-    EmptyDequeAddLast15();
-    EmptyDequeAddFirst15();
-    ErrorTest();
-    DequeCompare();
+    // System.out.println(6);
+    // Add15RemoveFirst10();
+    // System.out.println(7);
+    // Add15RemoveLast10();
+    // System.out.println(8);
+    // EmptyDeque();
+    // System.out.println(9);
+    // EmptyDequeAddLast15();
+    // EmptyDequeAddFirst15();
+    // ErrorTest();
+    // DequeCompare();
   }
 
   public static void AddLast15() {
@@ -70,7 +79,7 @@ public class DequeTest {
     System.out.println("Correct: " + (real.toString().equals(test.toString())));
     System.out.println();
   }
-  
+
   public static void AddRemove15Add10() {
     MyDeque test = new MyDeque<Integer>();
     Deque real = new LinkedList<Integer>();
@@ -79,10 +88,16 @@ public class DequeTest {
       test.removeLast();
       real.addLast(i);
       real.removeLast();
+      System.out.println();
     }
+    System.out.println(test.toString());
+    System.out.println(test.toStringDebug());
+    System.out.println();
     for (int i = 0; i < 10; i++) {
       test.addLast(i);
       real.addLast(i);
+      // System.out.println(test.toStringDebug());
+      System.out.println();
     }
     System.out.println("Should print a deque of numbers from 0 to 9");
     System.out.println(test);
