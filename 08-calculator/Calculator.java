@@ -10,25 +10,49 @@ public class Calculator{
   */
   public static double eval(String s){
     Scanner scan = new Scanner(s);
-    ArrayDeque<double> bob = new ArrayDeque<double>();
+    ArrayDeque<Double> bob = new ArrayDeque<Double>();
+    int operands = 0;
+    int operators = 0;
     while(scan.hasNext()){
       String mary = scan.next();
-      if(mary.equals("+"))bob.push(bob.pop() + bob.pop();
-      if(mary.equals("*"))bob.push(bob.pop() * bob.pop();
-      if(mary.equals("-")){
-        double a = bob.pop
+      if(mary.equals("+")){
+	bob.push(bob.pop() + bob.pop());
+	operators++;
       }
-      if(mary.equals("/")){
-
+      else if(mary.equals("*")){
+	bob.push(bob.pop() * bob.pop());
+	operators++;
       }
-      if(mary.equals("*")){
-
+      else if(mary.equals("-")){
+        double a = bob.pop();
+	double b = bob.pop();
+	bob.push(b-a);
+	operators++;
       }
-
+      else if(mary.equals("/")){
+	double a = bob.pop();
+	double b = bob.pop();
+	bob.push(b/a);
+	operators++;
+      }
+      else if(mary.equals("%")){
+	double a = bob.pop();
+	double b = bob.pop();
+	bob.push(b%a);
+	operators++;
+      }
+      else{
+	bob.push(Double.parseDouble(mary));
+	operands++;
+      }
     }
+    if(operators>operands)throw new IllegalArgumentException("too many operators");
+
+    return bob.pop();
   }
 
   public static void main(String[] args) {
     System.out.println(eval("11 3 - 4 + 2.5 *"));
+    System.out.println(eval("8 2 + 99 9 - * 2 + 9 -"));
   }
 }
