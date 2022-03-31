@@ -1,3 +1,4 @@
+import java.util.*;
 public class Calculator{
   /*Evaluate a postfix expression stored in s.
   *Assume valid postfix notation, of ints doubles and operators separated by spaces.
@@ -8,29 +9,26 @@ public class Calculator{
   *        Either "too many operands" or "too few operands for operation _" replace _ with +,- etc.
   */
   public static double eval(String s){
-    String[] postfix = s.split(" ");
-    Deque<Double> stack = new Deque<Double>();
-    for(String i:s){
-      if(i.equals("+"))stack.addFirst(stack.removeFirst() + stack.removeFirst());
-      if(i.equals("*"))stack.addFirst(stack.removeFirst() * stack.removeFirst());
-      if(i.equals("-"){
-        double x = stack.removeFirst();
-        double y = stack.removeFirst();
-        stack.addFirst(y-x);
+    Scanner scan = new Scanner(s);
+    ArrayDeque<double> bob = new ArrayDeque<double>();
+    while(scan.hasNext()){
+      String mary = scan.next();
+      if(mary.equals("+"))bob.push(bob.pop() + bob.pop();
+      if(mary.equals("*"))bob.push(bob.pop() * bob.pop();
+      if(mary.equals("-")){
+        double a = bob.pop
       }
-      if(i.equals("/"){
-        double x = stack.removeFirst();
-        double y = stack.removeFirst();
-        stack.addFirst(y/x);
+      if(mary.equals("/")){
+
       }
-      if(i.equals("%"){
-        double x = stack.removeFirst();
-        double y = stack.removeFirst();
-        stack.addFirst(y%x);
+      if(mary.equals("*")){
+
       }
 
     }
-    return stack.removeFirst();
   }
 
+  public static void main(String[] args) {
+    System.out.println(eval("11 3 - 4 + 2.5 *"));
+  }
 }
