@@ -12,39 +12,39 @@ public class Calculator{
     if(s.length() == 0)throw new IllegalArgumentException("too few operands");
     Scanner scan = new Scanner(s);
     ArrayDeque<Double> bob = new ArrayDeque<Double>();
-    
+
     while(scan.hasNext()){
       String mary = scan.next();
       if(mary.equals("+")){
-        if(bob.size() < 2)throw new IllegalArgumentException("too few operands for operation +");
+        if(bob.size() < 2)throw new IllegalArgumentException("too few operands");
         double a = bob.pop();
         double b = bob.pop();
         bob.push(a+b);
 
       }
       else if(mary.equals("*")){
-        if(bob.size() < 2)throw new IllegalArgumentException("too few operands for operation *");
+        if(bob.size() < 2)throw new IllegalArgumentException("too few operands");
         double a = bob.pop();
         double b = bob.pop();
         bob.push(a*b);
 
       }
       else if(mary.equals("-")){
-        if(bob.size() < 2)throw new IllegalArgumentException("too few operands for operation -");
+        if(bob.size() < 2)throw new IllegalArgumentException("too few operands");
         double a = bob.pop();
         double b = bob.pop();
         bob.push(b-a);
 
       }
       else if(mary.equals("/")){
-        if(bob.size() < 2)throw new IllegalArgumentException("too few operands for operation /");
+        if(bob.size() < 2)throw new IllegalArgumentException("too few operands");
         double a = bob.pop();
         double b = bob.pop();
         bob.push(b/a);
 
       }
       else if(mary.equals("%")){
-        if(bob.size() < 2)throw new IllegalArgumentException("too few operands for operation %");
+        if(bob.size() < 2)throw new IllegalArgumentException("too few operands");
         double a = bob.pop();
         double b = bob.pop();
         bob.push(b%a);
@@ -52,10 +52,10 @@ public class Calculator{
       }
       else{
         bob.push(Double.parseDouble(mary));
-
       }
-    }
 
+    }
+    if(bob.size() > 1)throw new IllegalArgumentException("too many operands");
 
     return bob.pop();
   }
