@@ -6,16 +6,17 @@ public class BurnTrees{
   private static final int FIRE = 1;
   private static final int ASH = 3;
   private static final int SPACE = 0;
-
+  private Frontier frontier;
 
   /*Determine if the simulation is still burning
    *@return false if any fires are still burning, true otherwise
    */
   public boolean done(){
+    return frontier.size()==0;
     //YOU MUST IMPLEMENT THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
     //HINT: do not check the board for fire which is an n^2 operation
-    return false;//placeholder for compilation purposes
+    //return false;//placeholder for compilation purposes
   }
 
 
@@ -27,6 +28,30 @@ public class BurnTrees{
     ticks++;//leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
+    int size  = frontier.size();
+    for(int i = 0; i < size; i++){
+      int [] flame = frontier.remove();
+      map[flame[0]][flame[1]] = ASH;
+      if(flame[0]+1 < map.length && map[flame[0]+1][flame[1]] == TREE){
+        map[flame[0]+1][flame[1]] = FIRE;
+        frontier.add(new int[] {flame[0]+1, flame[1]});
+      }
+      if(flame[0]-1 >= 0 && map[flame[0]-1][flame[1]] == TREE){
+        map[flame[0]-1][flame[1]] = FIRE;
+        frontier.add(new int[] {flame[0]-1, flame[1]});
+      }
+      if(flame[1]+1 < map[0].length && map[flame[0]][flame[1]+1] == TREE){
+        map[flame[0]][flame[1]+1] = FIRE;
+        frontier.add(new int[] {flame[0], flame[1]+1});
+      }
+      if(flame[1]-1 >= 0 && map[flame[0]][flame[1]-1] == TREE){
+        map[flame[0]][flame[1]-1] = FIRE;
+        frontier.add(new int[] {flame[0], flame[1]-1});
+      }
+
+    }
+
+
   }
 
   /***********************YOU MIGHT UPDATE THIS**************************/
@@ -41,6 +66,7 @@ public class BurnTrees{
       for(int c=0; c<map[r].length; c++ )
         if(Math.random() < density)
            map[r][c]=2;
+    frontier = new Frontier();
     start();//set the left column on fire.
   }
 
@@ -54,6 +80,7 @@ public class BurnTrees{
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
+	frontier.add(new int[] {i,0});
       }
     }
   }
