@@ -21,6 +21,8 @@ public class Frontier{
   public static void main(String[] args) {
     Frontier data = new Frontier();
     data.add(new int[] {1,2});
+    System.out.println(data.size());
     System.out.println(data.remove()[1]);
+    System.out.println(data.size());
   }
 }
