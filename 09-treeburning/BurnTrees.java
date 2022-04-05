@@ -54,6 +54,7 @@ public class BurnTrees{
 
   }
 
+
   /***********************YOU MIGHT UPDATE THIS**************************/
 
   /*Initialize the simulation.
@@ -100,16 +101,34 @@ public class BurnTrees{
       if(args.length > 3){
         DELAY = Integer.parseInt(args[3]);
       }
-      BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
+      // BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
+      densTest();
 
-
-      int ans = b.animate(DELAY);//animate all screens
-      System.out.println(ans);//print the final answer
+      // int ans = b.animate(DELAY);//animate all screens
+      // System.out.println(ans);//print the final answer
 
       //int ans = b.outputAll();//print all screens one after another
       //System.out.println(ans);//print the final answer
     }
 
+    public static void densTest(){
+      int[][] rounds = new int[10][50];
+      for(int i = 0; i < 10; i++){
+        for(int c = 0; c<50;c++){
+          BurnTrees foret = new BurnTrees(20,20,i*0.1);
+          rounds[i][c] = foret.run();
+        }
+      }
+
+      double[] avgRounds = new double[10];
+      for(int i = 0; i < 10; i++){
+        double avg = 0.0;
+        for(int c:rounds[i])avg+=c;
+        avgRounds[i]  = avg/50.0;
+      }
+
+      System.out.println(Arrays.toString(avgRounds));
+    }
 
 
 
