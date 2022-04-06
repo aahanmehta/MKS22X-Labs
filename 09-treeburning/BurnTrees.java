@@ -112,19 +112,19 @@ public class BurnTrees{
     }
 
     public static void densTest(){
-      int[][] rounds = new int[10][50];
-      for(int i = 0; i < 10; i++){
-        for(int c = 0; c<50;c++){
-          BurnTrees foret = new BurnTrees(20,20,i*0.1);
+      int[][] rounds = new int[20][100];
+      for(int i = 0; i < 20; i++){
+        for(int c = 0; c<100;c++){
+          BurnTrees foret = new BurnTrees(20,20,i*0.05);
           rounds[i][c] = foret.run();
         }
       }
 
-      double[] avgRounds = new double[10];
-      for(int i = 0; i < 10; i++){
+      double[] avgRounds = new double[20];
+      for(int i = 0; i < 20; i++){
         double avg = 0.0;
         for(int c:rounds[i])avg+=c;
-        avgRounds[i]  = avg/50.0;
+        avgRounds[i]  = avg/100.0;
       }
 
       System.out.println(Arrays.toString(avgRounds));
