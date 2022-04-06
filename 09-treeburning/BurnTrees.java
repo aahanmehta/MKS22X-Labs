@@ -9,8 +9,8 @@ public class BurnTrees{
   private Frontier frontier;
 
   /*Determine if the simulation is still burning
-   *@return false if any fires are still burning, true otherwise
-   */
+  *@return false if any fires are still burning, true otherwise
+  */
   public boolean done(){
     return frontier.size()==0;
     //YOU MUST IMPLEMENT THIS METHOD
@@ -21,9 +21,9 @@ public class BurnTrees{
 
 
   /*This is the core of the simulation. All of the logic for advancing to the next round goes here.
-   *All existing fires spread new fires, and turn to ash
-   *new fires should remain fire, and not spread.
-   */
+  *All existing fires spread new fires, and turn to ash
+  *new fires should remain fire, and not spread.
+  */
   public void tick(){
     ticks++;//leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
@@ -58,85 +58,84 @@ public class BurnTrees{
   /***********************YOU MIGHT UPDATE THIS**************************/
 
   /*Initialize the simulation.
-   *If you add more instance variables you can add more here,
-   *otherwise it is complete
-   */
+  *If you add more instance variables you can add more here,
+  *otherwise it is complete
+  */
   public BurnTrees(int width,int height, double density){
     map = new int[height][width];
     for(int r=0; r<map.length; r++ )
-      for(int c=0; c<map[r].length; c++ )
-        if(Math.random() < density)
-           map[r][c]=2;
+    for(int c=0; c<map[r].length; c++ )
+    if(Math.random() < density)
+    map[r][c]=2;
     frontier = new Frontier();
     start();//set the left column on fire.
   }
 
 
   /*
-   *Sets the trees in the left column of the forest on fire
-   */
+  *Sets the trees in the left column of the forest on fire
+  */
   public void start(){
     //If you add more instance variables you can add more here,
     //otherwise it is complete.
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0]=FIRE;
-	frontier.add(new int[] {i,0});
+        frontier.add(new int[] {i,0});
       }
     }
   }
 
 
 
-    public static void main(String[]args){
-      int WIDTH = 20;
-      int HEIGHT = 20;
-      int DELAY = 200;
-      double DENSITY = .7;
-      if(args.length > 1){
-        WIDTH = Integer.parseInt(args[0]);
-        HEIGHT = Integer.parseInt(args[1]);
-        DENSITY = Double.parseDouble(args[2]);
-      }
-      if(args.length > 3){
-        DELAY = Integer.parseInt(args[3]);
-      }
-      // BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
-      densTest();
+  public static void main(String[]args){
+    int WIDTH = 20;
+    int HEIGHT = 20;
+    int DELAY = 200;
+    double DENSITY = .7;
+    if(args.length > 1){
+      WIDTH = Integer.parseInt(args[0]);
+      HEIGHT = Integer.parseInt(args[1]);
+      DENSITY = Double.parseDouble(args[2]);
+    }
+    if(args.length > 3){
+      DELAY = Integer.parseInt(args[3]);
+    }
+    // BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
+    densTest();
 
-      // int ans = b.animate(DELAY);//animate all screens
-      // System.out.println(ans);//print the final answer
+    // int ans = b.animate(DELAY);//animate all screens
+    // System.out.println(ans);//print the final answer
 
-      //int ans = b.outputAll();//print all screens one after another
-      //System.out.println(ans);//print the final answer
+    //int ans = b.outputAll();//print all screens one after another
+    //System.out.println(ans);//print the final answer
+  }
+
+  public static void densTest(){
+    int[][] rounds = new int[20][100];
+    double[] avgRounds = new double[20];
+    for(int i = 0; i < 20; i++){
+      for(int c = 0; c<100;c++){
+        BurnTrees foret = new BurnTrees(1000,1000,i*0.05);
+        rounds[i][c] = foret.run();
+      }
+      double avg = 0.0;
+      for(int c:rounds[i])avg+=c;
+      avgRounds[i]  = avg/100.0;
+      System.out.println("Rounds for density " + i *0.05 + ": " + avgRounds[i]);
     }
 
-    public static void densTest(){
-      int[][] rounds = new int[20][100];
-      for(int i = 0; i < 20; i++){
-        for(int c = 0; c<100;c++){
-          BurnTrees foret = new BurnTrees(20,20,i*0.05);
-          rounds[i][c] = foret.run();
-        }
-      }
 
-      double[] avgRounds = new double[20];
-      for(int i = 0; i < 20; i++){
-        double avg = 0.0;
-        for(int c:rounds[i])avg+=c;
-        avgRounds[i]  = avg/100.0;
-      }
-
-      System.out.println(Arrays.toString(avgRounds));
-    }
+    // System.out.println(Arrays.toString(avgRounds));
+  }
 
 
 
   /***********************DO NOT UPDATE THINGS BELOW HERE**************************/
 
   /*DO NOT UPDATE THIS
-   *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
-   */
+  *PLEASE READ SO YOU SEE HOW THE SIMULATION IS SUPPOSED TO WORK!!!
+  */
   public int run(){
     while(!done()){
       tick();
@@ -156,13 +155,13 @@ public class BurnTrees{
     for (int i = 0; i < map.length; i++) {
       for (int c = 0; c < map[i].length; c++) {
         if(map[i][c]==SPACE)
-          builder.append(" ");
+        builder.append(" ");
         else if(map[i][c]==TREE)
-          builder.append("@");
+        builder.append("@");
         else if(map[i][c]==FIRE)
-          builder.append("w");
+        builder.append("w");
         else if(map[i][c]==ASH)
-          builder.append(".");
+        builder.append(".");
       }
       builder.append("\n");
     }
@@ -175,13 +174,13 @@ public class BurnTrees{
     for (int i = 0; i < map.length; i++) {
       for (int c = 0; c < map[i].length; c++) {
         if(map[i][c]==0)
-          builder.append(" ");
+        builder.append(" ");
         else if(map[i][c]==2)
-          builder.append(Text.color(Text.GREEN)+"@");
+        builder.append(Text.color(Text.GREEN)+"@");
         else if(map[i][c]==1)
-          builder.append(Text.color(Text.RED)+"w");
+        builder.append(Text.color(Text.RED)+"w");
         else if(map[i][c]==3)
-          builder.append(Text.color(Text.DARK)+".");
+        builder.append(Text.color(Text.DARK)+".");
       }
       builder.append("\n"+Text.RESET);
     }
