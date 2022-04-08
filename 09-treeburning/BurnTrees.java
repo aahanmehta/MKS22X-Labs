@@ -112,18 +112,18 @@ public class BurnTrees{
   }
 
   public static void densTest(){
-    int[][] rounds = new int[20][100];
+    int[][] rounds = new int[100][100];
     double[] avgRounds = new double[20];
-    for(int i = 0; i < 20; i++){
+    for(int i = 6; i < 7; i++){
       for(int c = 0; c<100;c++){
-        BurnTrees foret = new BurnTrees(1000,1000,i*0.05);
+        BurnTrees foret = new BurnTrees(100,100,i + c*0.01);
         rounds[i][c] = foret.run();
+        double avg = 0.0;
+        for(int q:rounds[i])avg+=q;
+        avgRounds[i]  = avg/100.0;
+        System.out.println("Rounds for density " + i *0.05 + ": " + avgRounds[i]);
       }
-      double avg = 0.0;
-      for(int c:rounds[i])avg+=c;
-      avgRounds[i]  = avg/100.0;
-      System.out.println("Rounds for density " + i *0.05 + ": " + avgRounds[i]);
-    }
+      }
 
 
     // System.out.println(Arrays.toString(avgRounds));
