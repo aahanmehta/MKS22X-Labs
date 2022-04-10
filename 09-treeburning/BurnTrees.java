@@ -111,22 +111,36 @@ public class BurnTrees{
     //System.out.println(ans);//print the final answer
   }
 
+  public static void pickSize(int side){
+    double avg = 0.0;
+    for(int i = 1; i < 100; i++){
+      BurnTrees foret = new BurnTrees(side, side, 0.5);
+      avg += foret.run();
+    }
+    System.out.println("Rounds for size " + side + ": " + avg/100.0);
+  }
+
+  public static void sizeTest(){
+    for(int i = 40; i <= 50; i++){
+      pickSize(i*25);
+    }
+  }
+
+
+
+  public static void pickDens(double dens){
+    double avg = 0.0;
+    for(int i = 0; i < 200; i++){
+      BurnTrees foret = new BurnTrees(200,200,dens);
+      avg+= foret.run();
+    }
+    System.out.println("Rounds for density " + dens + ": " + avg/200.0);
+  }
+
   public static void densTest(){
-    int[][] rounds = new int[100][100];
-    double[] avgRounds = new double[20];
-    for(int i = 6; i < 7; i++){
-      for(int c = 0; c<100;c++){
-        BurnTrees foret = new BurnTrees(100,100,i + c*0.01);
-        rounds[i][c] = foret.run();
-        double avg = 0.0;
-        for(int q:rounds[i])avg+=q;
-        avgRounds[i]  = avg/100.0;
-        System.out.println("Rounds for density " + i *0.05 + ": " + avgRounds[i]);
-      }
-      }
-
-
-    // System.out.println(Arrays.toString(avgRounds));
+    for(int i = 55; i <= 65 ; i++){
+      pickDens(i*0.01);
+    }
   }
 
 
