@@ -102,8 +102,9 @@ public class BurnTrees{
     //   DELAY = Integer.parseInt(args[3]);
     // }
     // BurnTrees b = new BurnTrees(WIDTH,HEIGHT,DENSITY);
-    sizeTest();
-    densTest();
+    densTestSpec();
+    System.out.println();
+    densTestGenr();
 
     // int ans = b.animate(DELAY);//animate all screens
     // System.out.println(ans);//print the final answer
@@ -138,9 +139,14 @@ public class BurnTrees{
     System.out.println("Rounds for density " + dens + ": " + avg/200.0);
   }
 
-  public static void densTest(){
+  public static void densTestSpec(){
     for(int i = 55; i <= 65 ; i++){
       pickDens(i*0.01);
+    }
+  }
+  public static void densTestGenr(){
+    for(int i = 1; i < 20; i++){
+      pickDens(i*0.05);
     }
   }
 
