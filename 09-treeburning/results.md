@@ -2,8 +2,8 @@
  1. I chose the board size 200x200 for my answer because it is a large enough size that the number of rounds required between different densities would be significant. When the board is really small (think < 10), the average rounds taken is pretty close. When it's bigger, the difference is much more noticeable.
  2.  I chose 200 repetitions for my finalized table because it is a high enough number that an unideal tree placement situation would not drastically change my answers. My data becomes more precise the more repetitions. But there's also a point where it becomes meaningless and it just takes up too much time.
  3. As board size increases, the average number of rounds also increases.
- 4.
-
+ 4. I tested this by increasing the size of the boards up to a board 1600x1600. The trend between increasing board size and increasing number of rounds continued, but at a slower pace than when the sizes were grew larger. The difference in rounds between a 30x30 and 40x40 was larger than 1040x1040 and 1050x1050 boards.
+ 5. A 0.60 density of trees yields the maximum burn time at size 200x200
 
 
 |DENSITY| Avg. Rounds (200x200, 200 reps)|
