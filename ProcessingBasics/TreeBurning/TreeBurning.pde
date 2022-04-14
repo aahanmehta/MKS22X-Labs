@@ -88,13 +88,16 @@
      *2. Decide how to fill them in using the String[] parameter
      *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
      */
-     
-     for(int i = 0; i < width; i+= SQUARESIZE){
-       for(int j = 0; j < height; j += SQUARESIZE){
-         rect(i,j,SQUARESIZE,SQUARESIZE);
-         
+      for(int i = 0; i < ROWS; i++){
+       for(int j = 0; j < COLS; j++){
+         if(lines[i].charAt(j) == ' ')fill(255,255,255);
+         if(lines[i].charAt(j) == 'w')fill(255,0,0);
+         if(lines[i].charAt(j) == '@')fill(0,255,0);
+         if(lines[i].charAt(j) == '.')fill(150);
+         rect(i*SQUARESIZE,j*SQUARESIZE,SQUARESIZE,SQUARESIZE);
        }
      }
+
   }
 
 
