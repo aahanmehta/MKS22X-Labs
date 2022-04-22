@@ -1,4 +1,5 @@
 ArrayList<Orb>orbList;
+
 void setup() {
   size(1000, 700);
   orbList = new ArrayList<Orb>();
@@ -8,7 +9,7 @@ void mouseClicked() {
   //The x and y positions are the same as the mouse
   //the size should be between [20.0,70.0)
   //the dx and dy should be [-3.0,3.0)
-  orbList.add(new Orb(mouseX, mouseY,random(6)-3,random(6)-3,random(50)+20));
+  orbList.add(new Orb(mouseX, mouseY,random(6)-3,random(6)-3,random(50)+20,0.0,3));
 }
 void draw() {
   background(255);
@@ -23,15 +24,18 @@ void draw() {
 public class Orb {
   float x, y;
   float xSpeed, ySpeed;
+  float xAcc, yAcc;
   float radius;
   color c;
 
-  public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_ ) {
+  public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_, float xAcc_, float yAcc_){
     x = x_;
     y = y_;
     xSpeed = xSpeed_;
     ySpeed = ySpeed_;
     radius = radius_;
+    xAcc = xAcc_;
+    yAcc = yAcc_;
     //random color... why not.
     c = color(random(255), random(255), random(255));
   }
@@ -47,6 +51,9 @@ public class Orb {
 
   void move() {
     //PART 2
+    
+    xSpeed+=xAcc;
+    ySpeed+=yAcc;
     //change the x based on the xSpeed
     //change the y based on the ySpeed
     x+=xSpeed;
