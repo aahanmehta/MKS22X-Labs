@@ -9,7 +9,7 @@ void mouseClicked() {
   //The x and y positions are the same as the mouse
   //the size should be between [20.0,70.0)
   //the dx and dy should be [-3.0,3.0)
-  orbList.add(new Orb(mouseX, mouseY,random(6)-3,random(6)-3,random(50)+20,0.0,3));
+  orbList.add(new Orb(mouseX, mouseY,random(6)-3,random(6)-3,random(50)+20,0.0,0.5));
 }
 void draw() {
   background(255);
@@ -53,14 +53,20 @@ public class Orb {
     //PART 2
     
     xSpeed+=xAcc;
-    ySpeed+=yAcc;
+    ySpeed-=yAcc;
     //change the x based on the xSpeed
     //change the y based on the ySpeed
     x+=xSpeed;
     y+=ySpeed;
     //PART 3
     //Change the speed when you collide with the end of the screen (all 4 sides)
-    if(x - radius/4 <= 0 || x + radius/4 >= width)xSpeed *= -1;
-    if(y - radius/4 <= 0 || y + radius/4 >= height)ySpeed *= -1;
+    if(x - radius/4 <= 0)xSpeed = Math.abs(xSpeed);
+    if(x + radius/4 >= width)xSpeed = -Math.abs(xSpeed);
+    if(y - radius/4 <= 0)ySpeed = Math.abs(ySpeed);
+    if(y + radius/4 >= height)ySpeed = -Math.abs(ySpeed);   
+  }
+  
+  void attract(Orb other){
+   xSpeed +=  
   }
 }
