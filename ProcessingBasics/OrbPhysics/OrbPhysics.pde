@@ -12,7 +12,7 @@ void mouseClicked() {
   //The x and y positions are the same as the mouse
   //the size should be between [20.0,70.0)
   //the dx and dy should be [-3.0,3.0)
-  orbList.add(new Orb(mouseX, mouseY, 5, 0,20, 0, 0));
+  orbList.add(new Orb(mouseX, mouseY, 5, 0,20));
 }
 
 void keyPressed() {
@@ -48,6 +48,10 @@ public class Orb {
   float radius;
   color c;
 
+  public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_){
+   this(x_, y_, xSpeed_, ySpeed_, radius_, 0.0, 0.0); 
+  }
+  
   public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_, float xAcc_, float yAcc_) {
     x = x_;
     y = y_;
@@ -67,6 +71,7 @@ public class Orb {
     //make sure it is the correct color
     fill(c);
     ellipse(x, y, radius, radius);
+    line(x,y,x+xSpeed *5,y+ySpeed*5);
     
   }
 
