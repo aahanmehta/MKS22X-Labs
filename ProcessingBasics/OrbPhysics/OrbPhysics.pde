@@ -1,31 +1,45 @@
 ArrayList<Orb>orbList;
 Orb Star;
+int MODE;
 void setup() {
-  size(1000, 700);
+  size(1000, 800);
   orbList = new ArrayList<Orb>();
   Star = new Orb(500, 350, 0, 0, 30, 0, 0);
-  
+  MODE = 0;
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
   //The x and y positions are the same as the mouse
   //the size should be between [20.0,70.0)
   //the dx and dy should be [-3.0,3.0)
-  orbList.add(new Orb(mouseX, mouseY, random(15)-3, random(6)-3, random(50)+20, 0, 0));
+  orbList.add(new Orb(mouseX, mouseY, 5, 0,20, 0, 0));
 }
-void draw() {
+
+void keyPressed() {
+  if(key == BACKSPACE){
+   for(int i = orbList.size()-1; i >= 0; i--){
+     orbList.remove(i);
+    }
+  }
+  if(key == ' '){
+   MODE = (MODE + 1) % 2; 
+  } 
   
+}
+
+void draw() {
   background(255);
   Star.display();
   for (Orb o : orbList) {
-    o.attract(Star);
+    if(MODE == 0)Star.attract(o);
     o.move();
-    o.display();
-    
+    o.display();    
   }
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
+  if(MODE == 0)text("Orbit",20,60);
+  if(MODE == 1)text("Gravity",20,60);
 }
 public class Orb {
   float x, y;
@@ -53,11 +67,11 @@ public class Orb {
     //make sure it is the correct color
     fill(c);
     ellipse(x, y, radius, radius);
+    
   }
 
   void move() {
     //PART 2
-
     xSpeed+=xAcc;
     ySpeed-=yAcc;
     //change the x based on the xSpeed
@@ -65,15 +79,19 @@ public class Orb {
     x+=xSpeed;
     y+=ySpeed;
     //PART 3
+    if(MODE == 1){
     //Change the speed when you collide with the end of the screen (all 4 sides)
+    ySpeed += 0.15;
     if (x - radius/4 <= 0)xSpeed = Math.abs(xSpeed);
     if (x + radius/4 >= width)xSpeed = -Math.abs(xSpeed);
     if (y - radius/4 <= 0)ySpeed = Math.abs(ySpeed);
     if (y + radius/4 >= height)ySpeed = -Math.abs(ySpeed);
+    }
+
   }
 
   void attract(Orb other) {
-    xSpeed += (other.x-x) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 10;
-    ySpeed += (other.y-y) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 10;
+    other.xSpeed += (x-other.x) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 20;
+    other.ySpeed += (y-other.y) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 20;
   }
 }
