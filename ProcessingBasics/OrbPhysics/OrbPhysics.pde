@@ -2,6 +2,15 @@ ArrayList<Orb>orbList;
 Orb Star;
 int MODE;
 int Back;
+int grav;
+final int ORBIT = 0;
+final int GRAVITY = 1;
+final int SPRING = 2;
+
+final float SPRING_CONSTANT = 0.005;
+final float SPRING_LENGTH = 50;
+final float DAMPEN = 0.995;
+
 void setup() {
   size(1000, 800);
   orbList = new ArrayList<Orb>();
@@ -24,27 +33,30 @@ void keyPressed() {
     }
   }
   if(key == ' '){
-   MODE = (MODE + 1) % 2; 
+   MODE = (MODE + 1) % 3; 
   } 
   if(key == 'b'){
     Back = (Back + 1) % 2;
   }
-  
+  if(key == 'g'){
+    grav = (grav + 1) % 2;
+  }
 }
 
 void draw() {
   if(Back == 0)background(255);
   Star.display();
   for (Orb o : orbList) {
-    if(MODE == 0)Star.attract(o);
+    if(MODE == ORBIT)Star.attract(o);
     o.move();
     o.display();    
   }
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  if(MODE == 0)text("Orbit",20,60);
-  if(MODE == 1)text("Gravity",20,60);
+  if(MODE == ORBIT)text("Orbit",20,60);
+  if(MODE == GRAVITY)text("Gravity",20,60);
+  if(MODE == SPRING)text("Spring",20,60);
   
   if(Back == 0)text("Background",20,80);
   if(Back == 1)text("No Background",20,80);
@@ -92,19 +104,29 @@ public class Orb {
     x+=xSpeed;
     y+=ySpeed;
     //PART 3
-    if(MODE == 1){
+    if(MODE == GRAVITY){
     //Change the speed when you collide with the end of the screen (all 4 sides)
-    ySpeed += 0.15;
+
     if (x - radius/4 <= 0)xSpeed = Math.abs(xSpeed);
     if (x + radius/4 >= width)xSpeed = -Math.abs(xSpeed);
     if (y - radius/4 <= 0)ySpeed = Math.abs(ySpeed);
     if (y + radius/4 >= height)ySpeed = -Math.abs(ySpeed);
     }
-
+    if(grav == 0)ySpeed += 0.15;
   }
 
   void attract(Orb other) {
     other.xSpeed += (x-other.x) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 20;
     other.ySpeed += (y-other.y) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 20;
+  }
+  
+  void springy(Orb other) {
+    float force = dist(x,y,other.x,other.y) - SPRING_LENGTH;
+    other.xSpeed += (force * (other.x-x)) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)) * SPRING_CONSTANT;
+    other.xSpeed *= dampen;
+    
+    other.ySpeed += (force * (other.x-x)) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)) * SPRING_CONSTANT;
+    other.ySpeed *= dampen;
+    
   }
 }
