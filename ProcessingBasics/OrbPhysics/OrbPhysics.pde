@@ -1,11 +1,13 @@
 ArrayList<Orb>orbList;
 Orb Star;
 int MODE;
+int Back;
 void setup() {
   size(1000, 800);
   orbList = new ArrayList<Orb>();
   Star = new Orb(500, 350, 0, 0, 30, 0, 0);
   MODE = 0;
+  Back = 0;
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
@@ -24,11 +26,14 @@ void keyPressed() {
   if(key == ' '){
    MODE = (MODE + 1) % 2; 
   } 
+  if(key == 'b'){
+    Back = (Back + 1) % 2;
+  }
   
 }
 
 void draw() {
-  background(255);
+  if(Back == 0)background(255);
   Star.display();
   for (Orb o : orbList) {
     if(MODE == 0)Star.attract(o);
@@ -40,6 +45,9 @@ void draw() {
   text(orbList.size(), 20, 40);
   if(MODE == 0)text("Orbit",20,60);
   if(MODE == 1)text("Gravity",20,60);
+  
+  if(Back == 0)text("Background",20,80);
+  if(Back == 1)text("No Background",20,80);
 }
 public class Orb {
   float x, y;
