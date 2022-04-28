@@ -3,13 +3,14 @@ Orb Star;
 int MODE;
 int Back;
 int grav;
+int spr;
 final int ORBIT = 0;
 final int GRAVITY = 1;
 final int SPRING = 2;
 
-final float SPRING_CONSTANT = 0.005;
+final float SPRING_CONSTANT = 0.05;
 final float SPRING_LENGTH = 50;
-final float DAMPEN = 0.995;
+final float SPRING_DAMPEN = 0.995;
 
 void setup() {
   size(1000, 800);
@@ -17,6 +18,8 @@ void setup() {
   Star = new Orb(500, 350, 0, 0, 30, 0, 0);
   MODE = 0;
   Back = 0;
+  spr =0;
+  grav = 0;
 }
 void mouseClicked() {
   //add a new Orb to the orbList, constructed as follows:
@@ -41,6 +44,10 @@ void keyPressed() {
   if(key == 'g'){
     grav = (grav + 1) % 2;
   }
+  
+  if(key == 's'){
+    spr = (spr+1) % 2;
+  }
 }
 
 void draw() {
@@ -48,6 +55,7 @@ void draw() {
   Star.display();
   for (Orb o : orbList) {
     if(MODE == ORBIT)Star.attract(o);
+    if(MODE == SPRING)Star.attractSpring(o);
     o.move();
     o.display();    
   }
@@ -60,6 +68,8 @@ void draw() {
   
   if(Back == 0)text("Background",20,80);
   if(Back == 1)text("No Background",20,80);
+  
+  if(grav == 0)text("Gravity",20,100);
 }
 public class Orb {
   float x, y;
@@ -120,13 +130,18 @@ public class Orb {
     other.ySpeed += (y-other.y) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y) ) * 20;
   }
   
-  void springy(Orb other) {
-    float force = dist(x,y,other.x,other.y) - SPRING_LENGTH;
-    other.xSpeed += (force * (other.x-x)) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)) * SPRING_CONSTANT;
-    other.xSpeed *= dampen;
+  void attractSpring(Orb other) {
+    float distance = dist(x,y,other.x,other.y);
+    float force = SPRING_CONSTANT * (distance - SPRING_LENGTH);
     
-    other.ySpeed += (force * (other.x-x)) / ( dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y)) * SPRING_CONSTANT;
-    other.ySpeed *= dampen;
-    
+    if(distance != 0){
+     other.xSpeed += (x-other.x)/(distance) * force;
+     other.xSpeed *= SPRING_DAMPEN;
+     
+     other.ySpeed += (y-other.y)/(distance) * force;
+     other.ySpeed *= SPRING_DAMPEN;
+     
+    }
+    if(spr == 1)line(x,y,other.x,other.y);
   }
 }
