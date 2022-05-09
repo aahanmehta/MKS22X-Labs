@@ -10,6 +10,7 @@
   int SQUARESIZE;
 
   void setup() {
+    
     size(600, 500);
     ROWS = 50;
     COLS = 60;
@@ -35,6 +36,7 @@
 
   /*DO NOT UPDATE THIS METHOD*/
   void draw() {
+
     background(0);
     //frameCount tells you how many times the draw method was called.
     if (frameCount % 10 == 0) {
