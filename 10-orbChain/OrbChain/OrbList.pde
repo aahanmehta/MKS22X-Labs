@@ -18,6 +18,8 @@ public class OrbList {
     orb.prev = last;
     orb.next = last.next;
     last.next = orb;
+    
+    
   }
 
   /**
@@ -28,7 +30,8 @@ public class OrbList {
     OrbNode current = first;
     //advance current to next until it is null, move() each of the nodes
     while(current != null){
-      
+      current.move();
+      current = current.next;
     }
   }
   /**
@@ -38,5 +41,9 @@ public class OrbList {
   void display() {
     OrbNode current = first;
     //advance current to next until it is null, display() each of the nodes
+    while(current != null){
+      current.display();
+      current = current.next;
+    }
   }
 }
