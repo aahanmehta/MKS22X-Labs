@@ -2,7 +2,7 @@ final static int SPRING = 2;
 static float SPRING_LENGTH = 50;
 static float SPRING_DAMPEN = 0.990;
 static float SPRING_CONSTANT = 0.015;
-static float GRAVITY = 0;
+static float GRAVITY = 0.35;
 final static int MODE = SPRING;
 OrbList orbs;
 void setup() {
@@ -24,6 +24,8 @@ void keyPressed() {
    
   if(key == 7)GRAVITY*=1.2;
   if(key == 8)GRAVITY*=0.8;
+  
+  if(key == BACKSPACE)orbs.delete(getNodeAt(x,y));
 }
 void draw() {
   background(255);

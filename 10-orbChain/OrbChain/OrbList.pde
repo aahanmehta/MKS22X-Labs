@@ -31,6 +31,22 @@ public class OrbList {
    shift.prev = toBeAdded;
    toBeAdded.next = shift; 
   }
+  
+  void delete(OrbNode target) {
+    (target.next).prev = target.prev;
+    (target.prev).next = target.next;
+  }
+  
+  OrbNode getNodeAt(int x, int y){
+   OrbNode current = first;
+   boolean found = false;
+   while(current != null && !found){
+     if(dist(x,y,current.x,current.y) <= 5){
+      if(current.x-current.radius<x && current.x+current.radius>x && current.y-current.radius<y && current.y+current.radius>y)
+      return current;
+     }
+   }
+  }
   /**
    *complete this method
    *process all nodes by running move.
