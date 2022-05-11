@@ -34,16 +34,16 @@ public class OrbList {
 
   OrbNode getNodeAt(int x, int y) {
     OrbNode current = first;
-    boolean found = false;
-    while (current != null && !found) {
-      if (dist(x, y, current.x, current.y) <= 5) {
-        if (current.x-current.radius<x && current.x+current.radius>x && current.y-current.radius<y && current.y+current.radius>y)
-          return current;
+    while (current != null) {
+      if (dist(x, y, current.x, current.y) <= current.radius) {
+        return current;
       }
+      current = current.next;
     }
     return null;
   }
   void delete(OrbNode target) {
+    if(target == null)return;
     (target.next).prev = target.prev;
     (target.prev).next = target.next;
   }
