@@ -20,11 +20,17 @@ public class OrbList {
     orb.next = last;
     orb.prev = temp;
     temp.next = orb;
-    
-    
-    
   }
-
+  void add(int xcor,OrbNode toBeAdded) {
+   OrbNode shift = first;
+   while(shift.x < xcor){
+     shift = shift.next;
+    }
+   toBeAdded.prev = shift.prev;
+   (shift.prev).next = toBeAdded;
+   shift.prev = toBeAdded;
+   toBeAdded.next = shift; 
+  }
   /**
    *complete this method
    *process all nodes by running move.
@@ -32,7 +38,7 @@ public class OrbList {
   void processAll() {
     OrbNode current = first;
     //advance current to next until it is null, move() each of the nodes
-    while(current != null){
+    while (current != null) {
       current.move();
       current = current.next;
     }
@@ -44,9 +50,10 @@ public class OrbList {
   void display() {
     OrbNode current = first;
     //advance current to next until it is null, display() each of the nodes
-    while(current != null){
+    while (current != null) {
       current.display();
       current = current.next;
     }
   }
+  
 }
