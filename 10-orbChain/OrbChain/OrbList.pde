@@ -43,7 +43,7 @@ public class OrbList {
     return null;
   }
   void delete(OrbNode target) {
-    if(target == null)return;
+    if(target == null || target == first || target == last)return;
     (target.next).prev = target.prev;
     (target.prev).next = target.next;
   }
