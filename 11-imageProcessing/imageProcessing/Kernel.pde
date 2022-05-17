@@ -19,14 +19,14 @@ public class Kernel {
     float b = 0;
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if (inBounds(i, j)) {
+        if (inBounds(x+i, y+j)) {
           r += red(img.get(x+i, y+j)) * kernel[i+1][j+1];
           g += green(img.get(x+i, y+j)) * kernel[i+1][j+1];
           b += blue(img.get(x+i, y+j)) * kernel[i+1][j+1];
         }
-        if (r>255)r=255; if (r<0)r=0;
-        if (g>255)g=255; if (g<0)g=0;
-        if (b>255)b=255; if (b<0)b=0;
+        //if (r>255)r=255; if (r<0)r=0;
+        //if (g>255)g=255; if (g<0)g=0;
+        //if (b>255)b=255; if (b<0)b=0;
       }
     }
 
